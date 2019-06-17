@@ -6,9 +6,12 @@ use Elastica\ResultSet;
 use Generated\Shared\Search\PageIndexMap;
 use Spryker\Client\Search\Plugin\Elasticsearch\ResultFormatter\AbstractElasticsearchResultFormatterPlugin;
 
-class RawPriceProductPriceListPageSearchResultFormatterPlugin extends AbstractElasticsearchResultFormatterPlugin
+/**
+ * @method \FondOfSpryker\Client\PriceProductPriceListPageSearch\PriceProductPriceListPageSearchFactory getFactory()
+ */
+class RawPriceProductConcretePriceListSearchResultFormatterPlugin extends AbstractElasticsearchResultFormatterPlugin
 {
-    public const NAME = 'price_product_price_list_pages';
+    public const NAME = 'price_product_concrete_price_lists';
 
     /**
      * @return string

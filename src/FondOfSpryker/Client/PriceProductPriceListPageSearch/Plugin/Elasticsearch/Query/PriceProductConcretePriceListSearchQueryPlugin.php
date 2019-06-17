@@ -17,9 +17,9 @@ use Spryker\Client\Search\Dependency\Plugin\SearchStringSetterInterface;
 use Spryker\Shared\Config\Config;
 use Spryker\Shared\Search\SearchConstants;
 
-class PriceProductPriceListPageSearchQueryPlugin extends AbstractPlugin implements QueryInterface, SearchStringSetterInterface, SearchStringGetterInterface
+class PriceProductConcretePriceListSearchQueryPlugin extends AbstractPlugin implements QueryInterface, SearchStringSetterInterface, SearchStringGetterInterface
 {
-    protected const TYPE = 'price_product_price_list_page';
+    protected const TYPE = 'price_product_concrete_price_list';
 
     /**
      * @var string

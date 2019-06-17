@@ -4,7 +4,7 @@ namespace FondOfSpryker\Client\PriceProductPriceListPageSearch\Config;
 
 use Generated\Shared\Transfer\SortConfigTransfer;
 
-class PriceProductPriceListPageSortConfigBuilder implements SortConfigBuilderInterface
+class PriceProductPriceListSearchSortConfigBuilder implements SortConfigBuilderInterface
 {
     protected const DIRECTION_ASC = 'asc';
     protected const DIRECTION_DESC = 'desc';

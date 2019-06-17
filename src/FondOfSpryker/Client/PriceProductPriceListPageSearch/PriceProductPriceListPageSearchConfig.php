@@ -21,7 +21,7 @@ class PriceProductPriceListPageSearchConfig extends AbstractBundleConfig
     /**
      * @return \Generated\Shared\Transfer\PaginationConfigTransfer
      */
-    public function getPriceProductPriceListPagePaginationConfigTransfer(): PaginationConfigTransfer
+    public function getPriceProductPriceListSearchPaginationConfigTransfer(): PaginationConfigTransfer
     {
         return (new PaginationConfigTransfer())
             ->setParameterName(static::PAGINATION_PARAMETER_NAME_PAGE)

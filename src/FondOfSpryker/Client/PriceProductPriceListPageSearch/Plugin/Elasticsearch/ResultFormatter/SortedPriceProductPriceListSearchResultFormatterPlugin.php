@@ -6,7 +6,10 @@ use Elastica\ResultSet;
 use Generated\Shared\Transfer\SortSearchResultTransfer;
 use Spryker\Client\Search\Plugin\Elasticsearch\ResultFormatter\AbstractElasticsearchResultFormatterPlugin;
 
-class SortedPriceProductPriceListPageSearchResultFormatterPlugin extends AbstractElasticsearchResultFormatterPlugin
+/**
+ * @method \FondOfSpryker\Client\PriceProductPriceListPageSearch\PriceProductPriceListPageSearchFactory getFactory()
+ */
+class SortedPriceProductPriceListSearchResultFormatterPlugin extends AbstractElasticsearchResultFormatterPlugin
 {
     public const NAME = 'sort';
 

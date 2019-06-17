@@ -7,7 +7,7 @@ use Generated\Shared\Transfer\PriceProductPriceListPageSearchTransfer;
 class PriceGrouper implements PriceGrouperInterface
 {
     protected const PRICES = 'prices';
-    protected const PRICE_DATA = 'priceData';
+    protected const PRICE_DATA = 'price_data';
     protected const PRICE_MODE_GROSS = 'GROSS_MODE';
     protected const PRICE_MODE_NET = 'NET_MODE';
 

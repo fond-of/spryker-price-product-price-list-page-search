@@ -20,7 +20,7 @@ class PriceProductConcretePriceListPageMapPlugin extends AbstractPlugin implemen
 {
     protected const KEY_ID_PRODUCT = 'id_product';
     protected const KEY_ID_PRICE_LIST = 'id_price_list';
-    protected const KEY_SKU = 'id_price_list';
+    protected const KEY_SKU = 'sku';
     protected const KEY_PRICE_LIST_NAME = 'price_list_name';
     protected const KEY_PRICES = 'prices';
 
@@ -63,8 +63,9 @@ class PriceProductConcretePriceListPageMapPlugin extends AbstractPlugin implemen
         $pageMapTransfer = (new PageMapTransfer())
             ->setStore($store)
             ->setLocale($locale->getLocaleName())
-            ->setType('price_product_concrete_price_list')
-            ->setIsActive(true);
+            ->setType(static::TYPE_PRICE_PRODUCT_ABSTRACT_PRICE_LIST)
+            ->setIsActive(true)
+            ->setPriceList($data[PriceProductPriceListPageSearchTransfer::ID_PRICE_LIST]);
 
         $pageMapBuilder
             ->addSearchResultData(

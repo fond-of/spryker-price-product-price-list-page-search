@@ -4,7 +4,7 @@ namespace FondOfSpryker\Client\PriceProductPriceListPageSearch\Config;
 
 use Generated\Shared\Transfer\PaginationConfigTransfer;
 
-class PriceProductPriceListPagePaginationConfigBuilder implements PaginationConfigBuilderInterface
+class PriceProductPriceListSearchPaginationConfigBuilder implements PaginationConfigBuilderInterface
 {
     /**
      * @var \Generated\Shared\Transfer\PaginationConfigTransfer

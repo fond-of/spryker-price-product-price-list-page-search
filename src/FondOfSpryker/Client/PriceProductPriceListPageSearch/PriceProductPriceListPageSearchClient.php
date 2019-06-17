@@ -18,16 +18,16 @@ class PriceProductPriceListPageSearchClient extends AbstractClient implements Pr
      * @return array
      * @api
      */
-    public function search(string $searchString, array $requestParameters): array
+    public function searchAbstract(string $searchString, array $requestParameters): array
     {
-        $queryExpanderPlugins = $this->getFactory()->getPriceProductPriceListPageSearchQueryExpanderPlugins();
+        $queryExpanderPlugins = $this->getFactory()->getPriceProductAbstractPriceListSearchQueryExpanderPlugins();
 
         $searchQuery = $this->getFactory()
-            ->createPriceProductPriceListPageSearchQuery($searchString, $requestParameters, $queryExpanderPlugins);
+            ->createPriceProductAbstractPriceListSearchQuery($searchString, $requestParameters, $queryExpanderPlugins);
 
         $resultFormatters = $this
             ->getFactory()
-            ->getPriceProductPriceListPageSearchResultFormatters();
+            ->getPriceProductAbstractPriceListSearchResultFormatters();
 
         return $this
             ->getFactory()
@@ -45,12 +45,62 @@ class PriceProductPriceListPageSearchClient extends AbstractClient implements Pr
      * @api
      *
      */
-    public function searchCount(string $searchString, array $requestParameters): int
+    public function searchAbstractCount(string $searchString, array $requestParameters): int
     {
-        $queryExpanderPlugins = $this->getFactory()->getPriceProductPriceListPageSearchCountQueryExpanderPlugins();
+        $queryExpanderPlugins = $this->getFactory()->getPriceProductAbstractPriceListSearchCountQueryExpanderPlugins();
 
         $searchQuery = $this->getFactory()
-            ->createPriceProductPriceListPageSearchQuery($searchString, $requestParameters, $queryExpanderPlugins);
+            ->createPriceProductAbstractPriceListSearchQuery($searchString, $requestParameters, $queryExpanderPlugins);
+
+        return $this
+            ->getFactory()
+            ->getSearchClient()
+            ->search($searchQuery, [], $requestParameters)
+            ->getTotalHits();
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @param string $searchString
+     * @param array $requestParameters
+     *
+     * @return array
+     * @api
+     */
+    public function searchConcrete(string $searchString, array $requestParameters): array
+    {
+        $queryExpanderPlugins = $this->getFactory()->getPriceProductAbstractPriceListSearchQueryExpanderPlugins();
+
+        $searchQuery = $this->getFactory()
+            ->createPriceProductConcretePriceListSearchQuery($searchString, $requestParameters, $queryExpanderPlugins);
+
+        $resultFormatters = $this
+            ->getFactory()
+            ->getPriceProductAbstractPriceListSearchResultFormatters();
+
+        return $this
+            ->getFactory()
+            ->getSearchClient()
+            ->search($searchQuery, $resultFormatters, $requestParameters);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @param string $searchString
+     * @param array $requestParameters
+     *
+     * @return int
+     * @api
+     *
+     */
+    public function searchConcreteCount(string $searchString, array $requestParameters): int
+    {
+        $queryExpanderPlugins = $this->getFactory()->getPriceProductConcretePriceListSearchCountQueryExpanderPlugins();
+
+        $searchQuery = $this->getFactory()
+            ->createPriceProductConcretePriceListSearchQuery($searchString, $requestParameters, $queryExpanderPlugins);
 
         return $this
             ->getFactory()

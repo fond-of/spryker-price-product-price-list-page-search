@@ -7,7 +7,10 @@ use Spryker\Client\Kernel\AbstractPlugin;
 use Spryker\Client\Search\Dependency\Plugin\QueryExpanderPluginInterface;
 use Spryker\Client\Search\Dependency\Plugin\QueryInterface;
 
-class PaginatedPriceProductPriceListPageQueryExpanderPlugin extends AbstractPlugin implements QueryExpanderPluginInterface
+/**
+ * @method \FondOfSpryker\Client\PriceProductPriceListPageSearch\PriceProductPriceListPageSearchFactory getFactory()
+ */
+class PaginatedPriceProductPriceListSearchQueryExpanderPlugin extends AbstractPlugin implements QueryExpanderPluginInterface
 {
     /**
      * {@inheritdoc}

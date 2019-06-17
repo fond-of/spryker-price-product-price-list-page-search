@@ -6,7 +6,10 @@ use Elastica\ResultSet;
 use Generated\Shared\Transfer\PaginationSearchResultTransfer;
 use Spryker\Client\Search\Plugin\Elasticsearch\ResultFormatter\AbstractElasticsearchResultFormatterPlugin;
 
-class PaginatedPriceProductPriceListPageResultFormatterPlugin extends AbstractElasticsearchResultFormatterPlugin
+/**
+ * @method \FondOfSpryker\Client\PriceProductPriceListPageSearch\PriceProductPriceListPageSearchFactory getFactory()
+ */
+class PaginatedPriceProductPriceListSearchResultFormatterPlugin extends AbstractElasticsearchResultFormatterPlugin
 {
     protected const NAME = 'pagination';
 
