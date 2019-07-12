@@ -159,7 +159,7 @@ class PriceProductPriceListPageSearchDependencyProvider extends AbstractBundleDe
      */
     protected function addPriceProductConcretePriceListPageMapExpanderPlugins(Container $container): Container
     {
-        $container[static::PLUGINS_PRICE_PRODUCT_ABSTRACT_PRICE_LIST_PAGE_MAP_EXPANDER] = function (Container $container) {
+        $container[static::PLUGINS_PRICE_PRODUCT_CONCRETE_PRICE_LIST_PAGE_MAP_EXPANDER] = function (Container $container) {
             return $this->getPriceProductConcretePriceListPageMapExpanderPlugins();
         };
 
