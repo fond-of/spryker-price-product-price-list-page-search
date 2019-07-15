@@ -12,19 +12,6 @@ use Spryker\Zed\Kernel\Persistence\AbstractQueryContainer;
 class PriceProductPriceListPageSearchQueryContainer extends AbstractQueryContainer implements PriceProductPriceListPageSearchQueryContainerInterface
 {
     /**
-     * @var \Orm\Zed\PriceProductPriceList\Persistence\FosPriceProductPriceListQuery
-     */
-    protected $fosPriceProductPriceListQuery;
-
-    /**
-     * @param \Orm\Zed\PriceProductPriceList\Persistence\FosPriceProductPriceListQuery $fosPriceProductPriceListQuery
-     */
-    public function __construct(FosPriceProductPriceListQuery $fosPriceProductPriceListQuery)
-    {
-        $this->fosPriceProductPriceListQuery = $fosPriceProductPriceListQuery;
-    }
-
-    /**
      * @param array $priceProductPriceListIds
      *
      * @throws
@@ -35,8 +22,8 @@ class PriceProductPriceListPageSearchQueryContainer extends AbstractQueryContain
     {
         $fosPriceProductPriceListQuery = $this->getFactory()->getPropelPriceProductPriceListQuery()
             ->clear()
-            ->filterByProductAbstract(null, Criteria::ISNOTNULL)
-            ->filterByProduct(null, Criteria::ISNULL);
+            ->filterByFkProductAbstract(null, Criteria::ISNOTNULL)
+            ->filterByFkProduct(null, Criteria::ISNULL);
 
         if (empty($priceProductPriceListIds)) {
             return $fosPriceProductPriceListQuery;
@@ -56,8 +43,8 @@ class PriceProductPriceListPageSearchQueryContainer extends AbstractQueryContain
     {
         $fosPriceProductPriceListQuery = $this->getFactory()->getPropelPriceProductPriceListQuery()
             ->clear()
-            ->filterByProductAbstract(null, Criteria::ISNULL)
-            ->filterByProduct(null, Criteria::ISNOTNULL);
+            ->filterByFkProductAbstract(null, Criteria::ISNULL)
+            ->filterByFkProduct(null, Criteria::ISNOTNULL);
 
         if (empty($priceProductPriceListIds)) {
             return $fosPriceProductPriceListQuery;

@@ -4,7 +4,7 @@ namespace FondOfSpryker\Zed\PriceProductPriceListPageSearch\Communication\Plugin
 
 use FondOfSpryker\Shared\PriceProductPriceListPageSearch\PriceProductPriceListPageSearchConstants;
 use FondOfSpryker\Zed\PriceProductPriceList\Dependency\PriceProductPriceListEvents;
-use Orm\Zed\PriceList\Persistence\Map\FosPriceListTableMap;
+use Orm\Zed\PriceProductPriceList\Persistence\Map\FosPriceProductPriceListTableMap;
 use Propel\Runtime\ActiveQuery\ModelCriteria;
 use Spryker\Zed\EventBehavior\Dependency\Plugin\EventResourceQueryContainerPluginInterface;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
@@ -50,7 +50,7 @@ class PriceProductConcretePriceListPageSearchEventResourceQueryContainerPlugin e
      */
     public function getIdColumnName(): ?string
     {
-        return FosPriceListTableMap::COL_ID_PRICE_LIST;
+        return FosPriceProductPriceListTableMap::COL_ID_PRICE_PRODUCT_PRICE_LIST;
     }
 
     /**

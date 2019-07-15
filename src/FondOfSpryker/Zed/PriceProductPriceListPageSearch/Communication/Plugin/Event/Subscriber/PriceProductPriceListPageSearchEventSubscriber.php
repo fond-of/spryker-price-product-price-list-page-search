@@ -15,6 +15,7 @@ use Spryker\Zed\Kernel\Communication\AbstractPlugin;
  * @method \FondOfSpryker\Zed\PriceProductPriceListPageSearch\PriceProductPriceListPageSearchConfig getConfig()
  * @method \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Business\PriceProductPriceListPageSearchFacadeInterface getFacade()
  * @method \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Communication\PriceProductPriceListPageSearchCommunicationFactory getFactory()
+ * @method \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Persistence\PriceProductPriceListPageSearchQueryContainerInterface getQueryContainer()
  */
 class PriceProductPriceListPageSearchEventSubscriber extends AbstractPlugin implements EventSubscriberInterface
 {
@@ -30,10 +31,12 @@ class PriceProductPriceListPageSearchEventSubscriber extends AbstractPlugin impl
         $this->addAbstractPriceProductPriceListCreateListener($eventCollection);
         $this->addAbstractPriceProductPriceListUpdateListener($eventCollection);
         $this->addAbstractPriceProductPriceListDeleteListener($eventCollection);
+        $this->addAbstractPriceProductPriceListPublishListener($eventCollection);
 
         $this->addConcretePriceProductPriceListCreateListener($eventCollection);
         $this->addConcretePriceProductPriceListUpdateListener($eventCollection);
         $this->addConcretePriceProductPriceListDeleteListener($eventCollection);
+        $this->addConcretePriceProductPriceListPublishListener($eventCollection);
 
         return $eventCollection;
     }
@@ -119,6 +122,36 @@ class PriceProductPriceListPageSearchEventSubscriber extends AbstractPlugin impl
         $eventCollection->addListenerQueued(
             PriceProductPriceListEvents::ENTITY_FOS_PRICE_PRODUCT_PRICE_LIST_DELETE,
             new PriceProductPriceListAbstractDeleteListener()
+        );
+
+        return $this;
+    }
+
+    /**
+     * @param \Spryker\Zed\Event\Dependency\EventCollectionInterface $eventCollection
+     *
+     * @return $this
+     */
+    protected function addAbstractPriceProductPriceListPublishListener(EventCollectionInterface $eventCollection)
+    {
+        $eventCollection->addListenerQueued(
+            PriceProductPriceListEvents::PRICE_ABSTRACT_PUBLISH,
+            new PriceProductPriceListAbstractListener()
+        );
+
+        return $this;
+    }
+
+    /**
+     * @param \Spryker\Zed\Event\Dependency\EventCollectionInterface $eventCollection
+     *
+     * @return $this
+     */
+    protected function addConcretePriceProductPriceListPublishListener(EventCollectionInterface $eventCollection)
+    {
+        $eventCollection->addListenerQueued(
+            PriceProductPriceListEvents::PRICE_CONCRETE_PUBLISH,
+            new PriceProductPriceListAbstractListener()
         );
 
         return $this;
