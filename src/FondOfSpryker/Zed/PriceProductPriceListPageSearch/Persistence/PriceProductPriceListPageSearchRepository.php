@@ -63,6 +63,7 @@ class PriceProductPriceListPageSearchRepository extends AbstractRepository imple
     {
         return $this->getFactory()
             ->getPropelPriceProductPriceListQuery()
+            ->clear()
             ->usePriceProductStoreQuery()
                 ->innerJoinStore()
                 ->innerJoinCurrency()
