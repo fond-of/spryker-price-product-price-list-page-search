@@ -45,17 +45,16 @@ class PriceGrouper implements PriceGrouperInterface
         $groupedPrices = [];
 
         foreach ($priceProductPriceListPageSearchTransfer->getUngroupedPrices() as $priceTransfer) {
-            $idPriceList = $priceProductPriceListPageSearchTransfer->getIdPriceList();
             $currencyCode = $priceTransfer->getCurrencyCode();
 
             if ($priceTransfer->getGrossPrice() || $priceTransfer->getNetPrice()) {
-                $groupedPrices[$idPriceList][$currencyCode][static::PRICE_DATA] = $priceTransfer->getPriceData();
+                $groupedPrices[$currencyCode][static::PRICE_DATA] = $priceTransfer->getPriceData();
             }
 
             $priceType = $priceTransfer->getPriceType();
 
-            $groupedPrices[$idPriceList][$currencyCode][static::PRICE_MODE_GROSS][$priceType] = $priceTransfer->getGrossPrice();
-            $groupedPrices[$idPriceList][$currencyCode][static::PRICE_MODE_NET][$priceType] = $priceTransfer->getNetPrice();
+            $groupedPrices[$currencyCode][static::PRICE_MODE_GROSS][$priceType] = $priceTransfer->getGrossPrice();
+            $groupedPrices[$currencyCode][static::PRICE_MODE_NET][$priceType] = $priceTransfer->getNetPrice();
         }
 
         return $groupedPrices;
@@ -98,9 +97,7 @@ class PriceGrouper implements PriceGrouperInterface
     protected function formatData(array $prices): array
     {
         if (!empty($prices)) {
-            return [
-                static::PRICES => $prices,
-            ];
+            return $prices;
         }
 
         return [];
