@@ -8,6 +8,7 @@ use FondOfSpryker\Client\PriceProductPriceListPageSearch\Config\PaginationConfig
 use FondOfSpryker\Client\PriceProductPriceListPageSearch\PriceProductPriceListPageSearchFactory;
 use Generated\Shared\Transfer\PaginationSearchResultTransfer;
 use ReflectionClass;
+use ReflectionMethod;
 
 class PaginatedPriceProductPriceListSearchResultFormatterPluginTest extends Unit
 {
@@ -68,14 +69,11 @@ class PaginatedPriceProductPriceListSearchResultFormatterPluginTest extends Unit
      */
     public function testFormatSearchResult()
     {
-        $foo = self::getMethod('formatSearchResult');
-        $obj = new PaginatedPriceProductPriceListSearchResultFormatterPlugin();
+        $reflectionMethod = self::getReflectionMethodByName('formatSearchResult');
 
         $this->priceProductPriceListPageSearchFactoryMock->expects($this->atLeastOnce())
             ->method('createPaginationConfigBuilder')
             ->willReturn($this->paginationConfigBuilderInterfaceMock);
-
-        $obj->setFactory($this->priceProductPriceListPageSearchFactoryMock);
 
         $this->paginationConfigBuilderInterfaceMock->expects($this->atLeastOnce())
             ->method('getCurrentItemsPerPage')
@@ -85,7 +83,7 @@ class PaginatedPriceProductPriceListSearchResultFormatterPluginTest extends Unit
             ->method('getTotalHits')
             ->willReturn(10);
 
-        $this->assertInstanceOf(PaginationSearchResultTransfer::class, $foo->invokeArgs($obj, [$this->resultSetMock, $this->requestParameters]));
+        $this->assertInstanceOf(PaginationSearchResultTransfer::class, $reflectionMethod->invokeArgs($this->paginatedPriceProductPriceListSearchResultFormatterPlugin, [$this->resultSetMock, $this->requestParameters]));
     }
 
     /**
@@ -103,11 +101,13 @@ class PaginatedPriceProductPriceListSearchResultFormatterPluginTest extends Unit
      *
      * @return \ReflectionMethod
      */
-    protected static function getMethod($name)
+    protected function getReflectionMethodByName(string $name): ReflectionMethod
     {
-        $class = new ReflectionClass(PaginatedPriceProductPriceListSearchResultFormatterPlugin::class);
-        $method = $class->getMethod($name);
-        $method->setAccessible(true);
-        return $method;
+        $reflectionClass = new ReflectionClass(PaginatedPriceProductPriceListSearchResultFormatterPlugin::class);
+
+        $reflectionMethod = $reflectionClass->getMethod($name);
+        $reflectionMethod->setAccessible(true);
+
+        return $reflectionMethod;
     }
 }

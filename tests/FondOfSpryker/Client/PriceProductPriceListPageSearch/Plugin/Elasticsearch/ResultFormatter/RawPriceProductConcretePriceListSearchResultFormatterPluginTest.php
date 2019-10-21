@@ -6,6 +6,7 @@ use Codeception\Test\Unit;
 use Elastica\Result;
 use Elastica\ResultSet;
 use ReflectionClass;
+use ReflectionMethod;
 
 class RawPriceProductConcretePriceListSearchResultFormatterPluginTest extends Unit
 {
@@ -73,14 +74,13 @@ class RawPriceProductConcretePriceListSearchResultFormatterPluginTest extends Un
      */
     public function testFormatSearchResult()
     {
-        $foo = self::getMethod('formatSearchResult');
-        $obj = new RawPriceProductConcretePriceListSearchResultFormatterPlugin();
+        $foo = $this->getReflectionMethodByName('formatSearchResult');
 
         $this->resultSetMock->expects($this->atLeastOnce())
             ->method('getResults')
             ->willReturn($this->results);
 
-        $this->assertIsArray($foo->invokeArgs($obj, [$this->resultSetMock, $this->requestParameters]));
+        $this->assertIsArray($foo->invokeArgs($this->rawPriceProductConcretePriceListSearchResultFormatterPlugin, [$this->resultSetMock, $this->requestParameters]));
     }
 
     /**
@@ -90,11 +90,13 @@ class RawPriceProductConcretePriceListSearchResultFormatterPluginTest extends Un
      *
      * @return \ReflectionMethod
      */
-    protected static function getMethod($name)
+    protected function getReflectionMethodByName(string $name): ReflectionMethod
     {
-        $class = new ReflectionClass(RawPriceProductConcretePriceListSearchResultFormatterPlugin::class);
-        $method = $class->getMethod($name);
-        $method->setAccessible(true);
-        return $method;
+        $reflectionClass = new ReflectionClass(RawPriceProductConcretePriceListSearchResultFormatterPlugin::class);
+
+        $reflectionMethod = $reflectionClass->getMethod($name);
+        $reflectionMethod->setAccessible(true);
+
+        return $reflectionMethod;
     }
 }

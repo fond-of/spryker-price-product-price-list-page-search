@@ -7,6 +7,7 @@ use Elastica\ResultSet;
 use FondOfSpryker\Client\PriceProductPriceListPageSearch\PriceProductPriceListPageSearchFactory;
 use Generated\Shared\Transfer\SortSearchResultTransfer;
 use ReflectionClass;
+use ReflectionMethod;
 
 class SortedPriceProductPriceListSearchResultFormatterPluginTest extends Unit
 {
@@ -50,6 +51,7 @@ class SortedPriceProductPriceListSearchResultFormatterPluginTest extends Unit
         ];
 
         $this->sortedPriceProductPriceListSearchResultFormatterPlugin = new SortedPriceProductPriceListSearchResultFormatterPlugin();
+        $this->sortedPriceProductPriceListSearchResultFormatterPlugin->setFactory($this->priceProductPriceListPageSearchFactoryMock);
     }
 
     /**
@@ -65,12 +67,9 @@ class SortedPriceProductPriceListSearchResultFormatterPluginTest extends Unit
      */
     public function testFormatSearchResult()
     {
-        $foo = self::getMethod('formatSearchResult');
-        $obj = new SortedPriceProductPriceListSearchResultFormatterPlugin();
+        $reflectionMethod = self::getReflectionMethodByName('formatSearchResult');
 
-        $obj->setFactory($this->priceProductPriceListPageSearchFactoryMock);
-
-        $this->assertInstanceOf(SortSearchResultTransfer::class, $foo->invokeArgs($obj, [$this->resultSetMock, $this->requestParameters]));
+        $this->assertInstanceOf(SortSearchResultTransfer::class, $reflectionMethod->invokeArgs($this->sortedPriceProductPriceListSearchResultFormatterPlugin, [$this->resultSetMock, $this->requestParameters]));
     }
 
     /**
@@ -80,11 +79,13 @@ class SortedPriceProductPriceListSearchResultFormatterPluginTest extends Unit
      *
      * @return \ReflectionMethod
      */
-    protected static function getMethod($name)
+    protected function getReflectionMethodByName(string $name): ReflectionMethod
     {
-        $class = new ReflectionClass(SortedPriceProductPriceListSearchResultFormatterPlugin::class);
-        $method = $class->getMethod($name);
-        $method->setAccessible(true);
-        return $method;
+        $reflectionClass = new ReflectionClass(SortedPriceProductPriceListSearchResultFormatterPlugin::class);
+
+        $reflectionMethod = $reflectionClass->getMethod($name);
+        $reflectionMethod->setAccessible(true);
+
+        return $reflectionMethod;
     }
 }
