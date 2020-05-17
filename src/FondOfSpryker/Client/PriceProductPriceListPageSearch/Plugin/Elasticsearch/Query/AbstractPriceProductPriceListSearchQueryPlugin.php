@@ -68,8 +68,6 @@ abstract class AbstractPriceProductPriceListSearchQueryPlugin extends AbstractPl
     /**
      * @param string $searchString
      *
-     * @throws
-     *
      * @return \Elastica\Query\AbstractQuery
      */
     protected function createFulltextSearchQuery(string $searchString): AbstractQuery

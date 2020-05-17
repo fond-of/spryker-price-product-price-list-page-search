@@ -14,8 +14,6 @@ class PriceProductPriceListPageSearchQueryContainer extends AbstractQueryContain
     /**
      * @param array $priceProductPriceListIds
      *
-     * @throws
-     *
      * @return \Orm\Zed\PriceProductPriceList\Persistence\FosPriceProductPriceListQuery
      */
     public function queryPriceProductAbstractPriceList(array $priceProductPriceListIds): FosPriceProductPriceListQuery
@@ -34,8 +32,6 @@ class PriceProductPriceListPageSearchQueryContainer extends AbstractQueryContain
 
     /**
      * @param array $priceProductPriceListIds
-     *
-     * @throws
      *
      * @return \Orm\Zed\PriceProductPriceList\Persistence\FosPriceProductPriceListQuery
      */

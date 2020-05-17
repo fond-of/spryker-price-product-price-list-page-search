@@ -15,8 +15,6 @@ use Spryker\Zed\Kernel\Communication\AbstractCommunicationFactory;
 class PriceProductPriceListPageSearchCommunicationFactory extends AbstractCommunicationFactory
 {
     /**
-     * @throws
-     *
      * @return \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Dependency\Facade\PriceProductPriceListPageSearchToEventBehaviorFacadeInterface
      */
     public function getEventBehaviorFacade(): PriceProductPriceListPageSearchToEventBehaviorFacadeInterface
@@ -25,8 +23,6 @@ class PriceProductPriceListPageSearchCommunicationFactory extends AbstractCommun
     }
 
     /**
-     * @throws
-     *
      * @return \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Dependency\Plugin\PriceProductAbstractPriceListPageMapExpanderPluginInterface[]
      */
     public function getPriceProductAbstractPriceListPageMapExpanderPlugins(): array
@@ -35,8 +31,6 @@ class PriceProductPriceListPageSearchCommunicationFactory extends AbstractCommun
     }
 
     /**
-     * @throws
-     *
      * @return \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Dependency\Plugin\PriceProductConcretePriceListPageMapExpanderPluginInterface[]
      */
     public function getPriceProductConcretePriceListPageMapExpanderPlugins(): array
@@ -45,8 +39,6 @@ class PriceProductPriceListPageSearchCommunicationFactory extends AbstractCommun
     }
 
     /**
-     * @throws
-     *
      * @return \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Dependency\Plugin\PriceProductAbstractPriceListPageMapExpanderPluginInterface[]
      */
     public function getPriceProductAbstractPriceListPageDataExpanderPlugins(): array
@@ -55,8 +47,6 @@ class PriceProductPriceListPageSearchCommunicationFactory extends AbstractCommun
     }
 
     /**
-     * @throws
-     *
      * @return \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Dependency\Plugin\PriceProductConcretePriceListPageDataExpanderPluginInterface[]
      */
     public function getPriceProductConcretePriceListPageDataExpanderPlugins(): array

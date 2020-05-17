@@ -16,8 +16,6 @@ class PriceProductPriceListPageSearchEntityManager extends AbstractEntityManager
      * @param \Generated\Shared\Transfer\PriceProductPriceListPageSearchTransfer $priceProductPriceListPageSearchTransfer
      * @param \Orm\Zed\PriceProductPriceListPageSearch\Persistence\FosPriceProductAbstractPriceListPageSearch $priceProductAbstractPriceListPageSearchEntity
      *
-     * @throws
-     *
      * @return void
      */
     public function updatePriceProductAbstract(
@@ -33,8 +31,6 @@ class PriceProductPriceListPageSearchEntityManager extends AbstractEntityManager
 
     /**
      * @param \Generated\Shared\Transfer\PriceProductPriceListPageSearchTransfer $priceProductPriceListPageSearchTransfer
-     *
-     * @throws
      *
      * @return void
      */
@@ -54,8 +50,6 @@ class PriceProductPriceListPageSearchEntityManager extends AbstractEntityManager
     /**
      * @param \Orm\Zed\PriceProductPriceListPageSearch\Persistence\FosPriceProductAbstractPriceListPageSearch[] $priceProductAbstractPriceListPageSearchEntities
      *
-     * @throws
-     *
      * @return void
      */
     public function deletePriceProductAbstractEntities(array $priceProductAbstractPriceListPageSearchEntities): void
@@ -68,8 +62,6 @@ class PriceProductPriceListPageSearchEntityManager extends AbstractEntityManager
     /**
      * @param \Generated\Shared\Transfer\PriceProductPriceListPageSearchTransfer $priceProductPriceListPageSearchTransfer
      * @param \Orm\Zed\PriceProductPriceListPageSearch\Persistence\FosPriceProductConcretePriceListPageSearch $priceProductConcretePriceListPageSearchEntity
-     *
-     * @throws
      *
      * @return void
      */
@@ -86,8 +78,6 @@ class PriceProductPriceListPageSearchEntityManager extends AbstractEntityManager
 
     /**
      * @param \Generated\Shared\Transfer\PriceProductPriceListPageSearchTransfer $priceProductPriceListPageSearchTransfer
-     *
-     * @throws
      *
      * @return void
      */
@@ -106,8 +96,6 @@ class PriceProductPriceListPageSearchEntityManager extends AbstractEntityManager
 
     /**
      * @param \Orm\Zed\PriceProductPriceListPageSearch\Persistence\FosPriceProductConcretePriceListPageSearch[] $priceProductConcretePriceListPageSearchEntities
-     *
-     * @throws
      *
      * @return void
      */

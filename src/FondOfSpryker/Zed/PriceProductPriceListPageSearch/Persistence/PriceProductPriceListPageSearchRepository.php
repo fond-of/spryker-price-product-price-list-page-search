@@ -27,9 +27,7 @@ class PriceProductPriceListPageSearchRepository extends AbstractRepository imple
     /**
      * @param int[] $priceProductPriceListIds
      *
-     * @throws
-     *
-     * @return \Generated\Shared\Transfer\PriceProductPriceListStorageTransfer[]
+     * @return \Generated\Shared\Transfer\PriceProductPriceListPageSearchTransfer[]
      */
     public function findPriceProductPriceListByIds(array $priceProductPriceListIds): array
     {
@@ -54,8 +52,6 @@ class PriceProductPriceListPageSearchRepository extends AbstractRepository imple
      * @module Currency
      * @module PriceProduct
      * @module PriceList
-     *
-     * @param array $filterByCompanyBusinessUnitIds
      *
      * @return \Orm\Zed\PriceProductPriceList\Persistence\FosPriceProductPriceListQuery
      */
@@ -197,8 +193,10 @@ class PriceProductPriceListPageSearchRepository extends AbstractRepository imple
      *
      * @return \Generated\Shared\Transfer\FosPriceProductAbstractPriceListPageSearchEntityTransfer[]
      */
-    public function findFilteredPriceProductAbstractPriceListPageSearchEntities(FilterTransfer $filterTransfer, array $priceProductAbstractPriceListPageSearchIds = []): array
-    {
+    public function findFilteredPriceProductAbstractPriceListPageSearchEntities(
+        FilterTransfer $filterTransfer,
+        array $priceProductAbstractPriceListPageSearchIds = []
+    ): array {
         $query = $this->getFactory()->createPriceProductAbstractPriceListPageSearchQuery();
 
         if ($priceProductAbstractPriceListPageSearchIds) {
@@ -210,8 +208,6 @@ class PriceProductPriceListPageSearchRepository extends AbstractRepository imple
 
     /**
      * @param int[] $priceProductPriceListIds
-     *
-     * @throws
      *
      * @return \Generated\Shared\Transfer\PriceProductPriceListPageSearchTransfer[]
      */

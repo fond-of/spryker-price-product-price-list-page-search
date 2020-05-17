@@ -86,8 +86,6 @@ class RawPriceProductConcretePriceListSearchResultFormatterPluginTest extends Un
     /**
      * @param string $name
      *
-     * @throws
-     *
      * @return \ReflectionMethod
      */
     protected function getReflectionMethodByName(string $name): ReflectionMethod

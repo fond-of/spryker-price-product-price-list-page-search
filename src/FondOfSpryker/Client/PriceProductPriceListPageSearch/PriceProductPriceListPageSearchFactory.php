@@ -17,7 +17,6 @@ use Spryker\Client\Search\Dependency\Plugin\SearchStringSetterInterface;
 class PriceProductPriceListPageSearchFactory extends AbstractFactory
 {
     /**
-     * @throws
      *
      * @return \FondOfSpryker\Client\PriceProductPriceListPageSearch\Dependency\Client\PriceProductPriceListPageSearchToSearchClientInterface
      */
@@ -73,8 +72,6 @@ class PriceProductPriceListPageSearchFactory extends AbstractFactory
     }
 
     /**
-     * @throws
-     *
      * @return \Spryker\Client\Search\Dependency\Plugin\QueryExpanderPluginInterface[]
      */
     public function getPriceProductAbstractPriceListSearchQueryExpanderPlugins(): array
@@ -83,8 +80,6 @@ class PriceProductPriceListPageSearchFactory extends AbstractFactory
     }
 
     /**
-     * @throws
-     *
      * @return \Spryker\Client\Search\Dependency\Plugin\QueryExpanderPluginInterface[]
      */
     public function getPriceProductAbstractPriceListSearchCountQueryExpanderPlugins(): array
@@ -93,8 +88,6 @@ class PriceProductPriceListPageSearchFactory extends AbstractFactory
     }
 
     /**
-     * @throws
-     *
      * @return \Spryker\Client\Search\Dependency\Plugin\ResultFormatterPluginInterface[]
      */
     public function getPriceProductAbstractPriceListSearchResultFormatters(): array
@@ -105,8 +98,6 @@ class PriceProductPriceListPageSearchFactory extends AbstractFactory
     }
 
     /**
-     * @throws
-     *
      * @return \Spryker\Client\Search\Dependency\Plugin\QueryInterface
      */
     public function getPriceProductAbstractPriceListSearchQueryPlugin(): QueryInterface
@@ -115,8 +106,6 @@ class PriceProductPriceListPageSearchFactory extends AbstractFactory
     }
 
     /**
-     * @throws
-     *
      * @return \Spryker\Client\Search\Dependency\Plugin\QueryExpanderPluginInterface[]
      */
     public function getPriceProductConcretePriceListSearchQueryExpanderPlugins(): array
@@ -125,8 +114,6 @@ class PriceProductPriceListPageSearchFactory extends AbstractFactory
     }
 
     /**
-     * @throws
-     *
      * @return \Spryker\Client\Search\Dependency\Plugin\QueryExpanderPluginInterface[]
      */
     public function getPriceProductConcretePriceListSearchCountQueryExpanderPlugins(): array
@@ -135,8 +122,6 @@ class PriceProductPriceListPageSearchFactory extends AbstractFactory
     }
 
     /**
-     * @throws
-     *
      * @return \Spryker\Client\Search\Dependency\Plugin\ResultFormatterPluginInterface[]
      */
     public function getPriceProductConcretePriceListSearchResultFormatters(): array
@@ -147,8 +132,6 @@ class PriceProductPriceListPageSearchFactory extends AbstractFactory
     }
 
     /**
-     * @throws
-     *
      * @return \Spryker\Client\Search\Dependency\Plugin\QueryInterface
      */
     public function getPriceProductConcretePriceListSearchQueryPlugin(): QueryInterface

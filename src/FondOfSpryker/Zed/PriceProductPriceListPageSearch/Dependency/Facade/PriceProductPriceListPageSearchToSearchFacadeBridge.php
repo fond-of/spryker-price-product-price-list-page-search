@@ -25,8 +25,6 @@ class PriceProductPriceListPageSearchToSearchFacadeBridge implements PriceProduc
      * @param \Generated\Shared\Transfer\LocaleTransfer $localeTransfer
      * @param string $mapperName
      *
-     * @throws
-     *
      * @return array
      */
     public function transformPageMapToDocumentByMapperName(

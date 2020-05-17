@@ -97,8 +97,6 @@ class PaginatedPriceProductPriceListSearchResultFormatterPluginTest extends Unit
     /**
      * @param string $name
      *
-     * @throws
-     *
      * @return \ReflectionMethod
      */
     protected function getReflectionMethodByName(string $name): ReflectionMethod

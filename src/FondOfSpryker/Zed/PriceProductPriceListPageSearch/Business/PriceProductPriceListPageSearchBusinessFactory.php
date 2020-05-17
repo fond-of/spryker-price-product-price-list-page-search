@@ -53,8 +53,6 @@ class PriceProductPriceListPageSearchBusinessFactory extends AbstractBusinessFac
     }
 
     /**
-     * @throws
-     *
      * @return \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Dependency\Service\PriceProductPriceListPageSearchToUtilEncodingServiceInterface
      */
     protected function getUtilEncodingService(): PriceProductPriceListPageSearchToUtilEncodingServiceInterface
@@ -63,8 +61,6 @@ class PriceProductPriceListPageSearchBusinessFactory extends AbstractBusinessFac
     }
 
     /**
-     * @throws
-     *
      * @return \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Dependency\Facade\PriceProductPriceListPageSearchToSearchFacadeInterface
      */
     protected function getSearchFacade(): PriceProductPriceListPageSearchToSearchFacadeInterface
