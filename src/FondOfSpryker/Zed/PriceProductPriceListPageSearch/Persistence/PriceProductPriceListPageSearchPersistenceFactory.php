@@ -14,6 +14,7 @@ use Spryker\Zed\Kernel\Persistence\AbstractPersistenceFactory;
  * @method \FondOfSpryker\Zed\PriceProductPriceListPageSearch\PriceProductPriceListPageSearchConfig getConfig()
  * @method \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Persistence\PriceProductPriceListPageSearchEntityManagerInterface getEntityManager()
  * @method \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Persistence\PriceProductPriceListPageSearchRepositoryInterface getRepository()
+ * @method \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Persistence\PriceProductPriceListPageSearchQueryContainerInterface getQueryContainer()
  */
 class PriceProductPriceListPageSearchPersistenceFactory extends AbstractPersistenceFactory
 {
@@ -34,7 +35,7 @@ class PriceProductPriceListPageSearchPersistenceFactory extends AbstractPersiste
     }
 
     /**
-     * @return \Orm\Zed\PriceProductPageSearch\Persistence\FosPriceProductAbstractPriceListPageSearchQuery
+     * @return \Orm\Zed\PriceProductPriceListPageSearch\Persistence\FosPriceProductAbstractPriceListPageSearchQuery
      */
     public function createPriceProductAbstractPriceListPageSearchQuery(): FosPriceProductAbstractPriceListPageSearchQuery
     {
@@ -42,7 +43,7 @@ class PriceProductPriceListPageSearchPersistenceFactory extends AbstractPersiste
     }
 
     /**
-     * @return \Orm\Zed\PriceProductPageSearch\Persistence\FosPriceProductConcretePriceListPageSearchQuery
+     * @return \Orm\Zed\PriceProductPriceListPageSearch\Persistence\FosPriceProductConcretePriceListPageSearchQuery
      */
     public function createPriceProductConcretePriceListPageSearchQuery(): FosPriceProductConcretePriceListPageSearchQuery
     {
