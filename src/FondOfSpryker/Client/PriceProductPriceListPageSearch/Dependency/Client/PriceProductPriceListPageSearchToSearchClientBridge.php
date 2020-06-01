@@ -2,7 +2,7 @@
 
 namespace FondOfSpryker\Client\PriceProductPriceListPageSearch\Dependency\Client;
 
-use Spryker\Client\Search\Dependency\Plugin\QueryInterface;
+use Spryker\Client\SearchExtension\Dependency\Plugin\QueryInterface;
 
 class PriceProductPriceListPageSearchToSearchClientBridge implements PriceProductPriceListPageSearchToSearchClientInterface
 {
@@ -20,26 +20,32 @@ class PriceProductPriceListPageSearchToSearchClientBridge implements PriceProduc
     }
 
     /**
-     * @param \Spryker\Client\Search\Dependency\Plugin\QueryInterface $searchQuery
-     * @param \Spryker\Client\Search\Dependency\Plugin\ResultFormatterPluginInterface[] $resultFormatters
+     * @param \Spryker\Client\SearchExtension\Dependency\Plugin\QueryInterface $searchQuery
+     * @param \Spryker\Client\SearchExtension\Dependency\Plugin\ResultFormatterPluginInterface[] $resultFormatters
      * @param array $requestParameters
      *
-     * @return array|\Elastica\ResultSet
+     * @return mixed
      */
-    public function search(QueryInterface $searchQuery, array $resultFormatters = [], array $requestParameters = [])
-    {
+    public function search(
+        QueryInterface $searchQuery,
+        array $resultFormatters = [],
+        array $requestParameters = []
+    ) {
         return $this->searchClient->search($searchQuery, $resultFormatters, $requestParameters);
     }
 
     /**
-     * @param \Spryker\Client\Search\Dependency\Plugin\QueryInterface $searchQuery
-     * @param \Spryker\Client\Search\Dependency\Plugin\QueryExpanderPluginInterface[] $searchQueryExpanders
+     * @param \Spryker\Client\SearchExtension\Dependency\Plugin\QueryInterface $searchQuery
+     * @param \Spryker\Client\SearchExtension\Dependency\Plugin\QueryExpanderPluginInterface[] $searchQueryExpanders
      * @param array $requestParameters
      *
-     * @return \Spryker\Client\Search\Dependency\Plugin\QueryInterface
+     * @return \Spryker\Client\SearchExtension\Dependency\Plugin\QueryInterface
      */
-    public function expandQuery(QueryInterface $searchQuery, array $searchQueryExpanders, array $requestParameters = []): QueryInterface
-    {
+    public function expandQuery(
+        QueryInterface $searchQuery,
+        array $searchQueryExpanders,
+        array $requestParameters = []
+    ): QueryInterface {
         return $this->searchClient->expandQuery($searchQuery, $searchQueryExpanders, $requestParameters);
     }
 }

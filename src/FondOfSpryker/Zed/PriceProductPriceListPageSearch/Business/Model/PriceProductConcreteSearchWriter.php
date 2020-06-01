@@ -2,10 +2,45 @@
 
 namespace FondOfSpryker\Zed\PriceProductPriceListPageSearch\Business\Model;
 
+use FondOfSpryker\Zed\PriceProductPriceListPageSearch\Dependency\Service\PriceProductPriceListPageSearchToUtilEncodingServiceInterface;
+use FondOfSpryker\Zed\PriceProductPriceListPageSearch\Persistence\PriceProductPriceListPageSearchEntityManagerInterface;
+use FondOfSpryker\Zed\PriceProductPriceListPageSearch\Persistence\PriceProductPriceListPageSearchRepositoryInterface;
 use Generated\Shared\Transfer\PriceProductPriceListPageSearchTransfer;
 
 class PriceProductConcreteSearchWriter extends AbstractPriceProductSearchWriter implements PriceProductConcreteSearchWriterInterface
 {
+    /**
+     * @var \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Business\Model\PriceProductConcreteSearchExpanderInterface
+     */
+    protected $priceProductConcreteSearchExpander;
+
+    /**
+     * @param \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Business\Model\PriceGrouperInterface $priceGrouper
+     * @param \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Business\Model\PriceProductSearchMapperInterface $priceProductSearchMapper
+     * @param \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Dependency\Service\PriceProductPriceListPageSearchToUtilEncodingServiceInterface $utilEncodingService
+     * @param \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Persistence\PriceProductPriceListPageSearchRepositoryInterface $repository
+     * @param \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Persistence\PriceProductPriceListPageSearchEntityManagerInterface $entityManager
+     * @param \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Business\Model\PriceProductConcreteSearchExpanderInterface $priceProductConcreteSearchExpander
+     */
+    public function __construct(
+        PriceGrouperInterface $priceGrouper,
+        PriceProductSearchMapperInterface $priceProductSearchMapper,
+        PriceProductPriceListPageSearchToUtilEncodingServiceInterface $utilEncodingService,
+        PriceProductPriceListPageSearchRepositoryInterface $repository,
+        PriceProductPriceListPageSearchEntityManagerInterface $entityManager,
+        PriceProductConcreteSearchExpanderInterface $priceProductConcreteSearchExpander
+    ) {
+        parent::__construct(
+            $priceGrouper,
+            $priceProductSearchMapper,
+            $utilEncodingService,
+            $repository,
+            $entityManager
+        );
+
+        $this->priceProductConcreteSearchExpander = $priceProductConcreteSearchExpander;
+    }
+
     /**
      * @param int[] $priceProductPriceListIds
      *
@@ -21,7 +56,7 @@ class PriceProductConcreteSearchWriter extends AbstractPriceProductSearchWriter 
         }
 
         $priceKeys = array_map(
-            function (PriceProductPriceListPageSearchTransfer $priceProductPriceListPageSearchTransfer) {
+            static function (PriceProductPriceListPageSearchTransfer $priceProductPriceListPageSearchTransfer) {
                 return $priceProductPriceListPageSearchTransfer->getPriceKey();
             },
             $priceProductPriceListPageSearchTransfers
@@ -84,6 +119,7 @@ class PriceProductConcreteSearchWriter extends AbstractPriceProductSearchWriter 
                 );
 
                 unset($existingPageSearchEntities[$priceProductPriceListPageSearchTransfer->getPriceKey()]);
+
                 continue;
             }
 

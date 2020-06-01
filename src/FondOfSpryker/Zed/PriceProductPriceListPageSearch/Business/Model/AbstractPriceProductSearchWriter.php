@@ -104,11 +104,13 @@ abstract class AbstractPriceProductSearchWriter
     protected function addDataAttributes(
         PriceProductPriceListPageSearchTransfer $priceProductPriceListPageSearchTransfer
     ): PriceProductPriceListPageSearchTransfer {
-        $structuredData = $this->utilEncodingService->encodeJson($priceProductPriceListPageSearchTransfer->toArray());
-        $data = $this->priceProductSearchMapper->mapTransferToSearchData($priceProductPriceListPageSearchTransfer);
+        $data = $priceProductPriceListPageSearchTransfer->toArray();
+
+        $structuredData = $this->utilEncodingService->encodeJson($data);
+        $searchData = $this->priceProductSearchMapper->mapDataToSearchData($data);
 
         $priceProductPriceListPageSearchTransfer->setStructuredData($structuredData)
-            ->setData($data);
+            ->setData($searchData);
 
         return $priceProductPriceListPageSearchTransfer;
     }

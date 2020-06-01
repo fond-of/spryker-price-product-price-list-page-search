@@ -34,7 +34,7 @@
             <parameter name="store" required="false" />
             <parameter name="key_suffix_column" value="price_key"/>
             <parameter name="queue_group" value="sync.search.price"/>
-            <parameter name="params" value='{"type":"page"}'/>
+            <parameter name="params" value='{"type":"price-product-price-list"}'/>
         </behavior>
 
         <behavior name="timestampable"/>
@@ -69,7 +69,7 @@
             <parameter name="store" required="false" />
             <parameter name="key_suffix_column" value="price_key"/>
             <parameter name="queue_group" value="sync.search.price"/>
-            <parameter name="params" value='{"type":"page"}'/>
+            <parameter name="params" value='{"type":"price-product-price-list"}'/>
         </behavior>
 
         <behavior name="timestampable"/>

@@ -11,6 +11,7 @@ use Spryker\Zed\Kernel\Communication\AbstractCommunicationFactory;
  * @method \FondOfSpryker\Zed\PriceProductPriceListPageSearch\PriceProductPriceListPageSearchConfig getConfig()
  * @method \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Persistence\PriceProductPriceListPageSearchRepositoryInterface getRepository()
  * @method \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Business\PriceProductPriceListPageSearchFacadeInterface getFacade()
+ * @method \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Persistence\PriceProductPriceListPageSearchQueryContainerInterface getQueryContainer()
  */
 class PriceProductPriceListPageSearchCommunicationFactory extends AbstractCommunicationFactory
 {
@@ -20,37 +21,5 @@ class PriceProductPriceListPageSearchCommunicationFactory extends AbstractCommun
     public function getEventBehaviorFacade(): PriceProductPriceListPageSearchToEventBehaviorFacadeInterface
     {
         return $this->getProvidedDependency(PriceProductPriceListPageSearchDependencyProvider::FACADE_EVENT_BEHAVIOR);
-    }
-
-    /**
-     * @return \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Dependency\Plugin\PriceProductAbstractPriceListPageMapExpanderPluginInterface[]
-     */
-    public function getPriceProductAbstractPriceListPageMapExpanderPlugins(): array
-    {
-        return $this->getProvidedDependency(PriceProductPriceListPageSearchDependencyProvider::PLUGINS_PRICE_PRODUCT_ABSTRACT_PRICE_LIST_PAGE_MAP_EXPANDER);
-    }
-
-    /**
-     * @return \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Dependency\Plugin\PriceProductConcretePriceListPageMapExpanderPluginInterface[]
-     */
-    public function getPriceProductConcretePriceListPageMapExpanderPlugins(): array
-    {
-        return $this->getProvidedDependency(PriceProductPriceListPageSearchDependencyProvider::PLUGINS_PRICE_PRODUCT_CONCRETE_PRICE_LIST_PAGE_MAP_EXPANDER);
-    }
-
-    /**
-     * @return \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Dependency\Plugin\PriceProductAbstractPriceListPageMapExpanderPluginInterface[]
-     */
-    public function getPriceProductAbstractPriceListPageDataExpanderPlugins(): array
-    {
-        return $this->getProvidedDependency(PriceProductPriceListPageSearchDependencyProvider::PLUGINS_PRICE_PRODUCT_ABSTRACT_PRICE_LIST_PAGE_MAP_EXPANDER);
-    }
-
-    /**
-     * @return \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Dependency\Plugin\PriceProductConcretePriceListPageDataExpanderPluginInterface[]
-     */
-    public function getPriceProductConcretePriceListPageDataExpanderPlugins(): array
-    {
-        return $this->getProvidedDependency(PriceProductPriceListPageSearchDependencyProvider::PLUGINS_PRICE_PRODUCT_CONCRETE_PRICE_LIST_PAGE_MAP_EXPANDER);
     }
 }

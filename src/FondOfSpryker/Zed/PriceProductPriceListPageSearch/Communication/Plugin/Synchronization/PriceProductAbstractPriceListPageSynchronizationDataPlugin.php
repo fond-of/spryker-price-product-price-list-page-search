@@ -49,7 +49,7 @@ class PriceProductAbstractPriceListPageSynchronizationDataPlugin extends Abstrac
      */
     public function getParams(): array
     {
-        return ['type' => 'page'];
+        return ['type' => 'price-product-abstract-price-list'];
     }
 
     /**

@@ -3,11 +3,11 @@
 namespace FondOfSpryker\Client\PriceProductPriceListPageSearch;
 
 use FondOfSpryker\Client\PriceProductPriceListPageSearch\Dependency\Client\PriceProductPriceListPageSearchToSearchClientBridge;
-use FondOfSpryker\Client\PriceProductPriceListPageSearch\Plugin\Elasticsearch\Query\PriceProductAbstractPriceListSearchQueryPlugin;
-use FondOfSpryker\Client\PriceProductPriceListPageSearch\Plugin\Elasticsearch\Query\PriceProductConcretePriceListSearchQueryPlugin;
+use FondOfSpryker\Client\PriceProductPriceListPageSearch\Plugin\SearchExtension\PriceProductAbstractPriceListSearchQueryPlugin;
+use FondOfSpryker\Client\PriceProductPriceListPageSearch\Plugin\SearchExtension\PriceProductConcretePriceListSearchQueryPlugin;
 use Spryker\Client\Kernel\AbstractDependencyProvider;
 use Spryker\Client\Kernel\Container;
-use Spryker\Client\Search\Dependency\Plugin\QueryInterface;
+use Spryker\Client\SearchExtension\Dependency\Plugin\QueryInterface;
 
 class PriceProductPriceListPageSearchDependencyProvider extends AbstractDependencyProvider
 {
@@ -19,9 +19,9 @@ class PriceProductPriceListPageSearchDependencyProvider extends AbstractDependen
     public const PLUGINS_PRICE_PRODUCT_ABSTRACT_PRICE_LIST_SEARCH_COUNT_QUERY_EXPANDER = 'PLUGINS_PRICE_PRODUCT_ABSTRACT_PRICE_LIST_SEARCH_COUNT_QUERY_EXPANDER';
     public const PLUGINS_PRICE_PRODUCT_ABSTRACT_PRICE_LIST_SEARCH_RESULT_FORMATTER = 'PLUGINS_PRICE_PRODUCT_ABSTRACT_PRICE_LIST_SEARCH_RESULT_FORMATTER';
     public const PLUGINS_PRICE_PRODUCT_ABSTRACT_PRICE_LIST_SEARCH_QUERY_EXPANDER = 'PLUGINS_PRICE_PRODUCT_ABSTRACT_PRICE_LIST_SEARCH_QUERY_EXPANDER';
+
     public const PLUGINS_PRICE_PRODUCT_CONCRETE_PRICE_LIST_SEARCH_COUNT_QUERY_EXPANDER = 'PLUGINS_PRICE_PRODUCT_CONCRETE_PRICE_LIST_SEARCH_COUNT_QUERY_EXPANDER';
     public const PLUGINS_PRICE_PRODUCT_CONCRETE_PRICE_LIST_SEARCH_RESULT_FORMATTER = 'PLUGINS_PRICE_PRODUCT_CONCRETE_PRICE_LIST_SEARCH_RESULT_FORMATTER';
-
     public const PLUGINS_PRICE_PRODUCT_CONCRETE_PRICE_LIST_SEARCH_QUERY_EXPANDER = 'PLUGINS_PRICE_PRODUCT_CONCRETE_PRICE_LIST_SEARCH_QUERY_EXPANDER';
 
     /**
@@ -177,7 +177,7 @@ class PriceProductPriceListPageSearchDependencyProvider extends AbstractDependen
     }
 
     /**
-     * @return \Spryker\Client\Search\Dependency\Plugin\QueryInterface
+     * @return \Spryker\Client\SearchExtension\Dependency\Plugin\QueryInterface
      */
     protected function createPriceProductAbstractPriceListSearchQueryPlugin(): QueryInterface
     {
@@ -185,7 +185,7 @@ class PriceProductPriceListPageSearchDependencyProvider extends AbstractDependen
     }
 
     /**
-     * @return \Spryker\Client\Search\Dependency\Plugin\QueryInterface
+     * @return \Spryker\Client\SearchExtension\Dependency\Plugin\QueryInterface
      */
     protected function createPriceProductConcretePriceListSearchQueryPlugin(): QueryInterface
     {
@@ -193,7 +193,7 @@ class PriceProductPriceListPageSearchDependencyProvider extends AbstractDependen
     }
 
     /**
-     * @return \Spryker\Client\Search\Dependency\Plugin\ResultFormatterPluginInterface[]
+     * @return \Spryker\Client\SearchExtension\Dependency\Plugin\ResultFormatterPluginInterface[]
      */
     protected function createPriceProductAbstractPriceListSearchResultFormatterPlugins(): array
     {
@@ -201,7 +201,7 @@ class PriceProductPriceListPageSearchDependencyProvider extends AbstractDependen
     }
 
     /**
-     * @return \Spryker\Client\Search\Dependency\Plugin\QueryExpanderPluginInterface[]
+     * @return \Spryker\Client\SearchExtension\Dependency\Plugin\QueryExpanderPluginInterface[]
      */
     protected function createPriceProductAbstractPriceListSearchQueryExpanderPlugins(): array
     {
@@ -209,7 +209,7 @@ class PriceProductPriceListPageSearchDependencyProvider extends AbstractDependen
     }
 
     /**
-     * @return \Spryker\Client\Search\Dependency\Plugin\QueryExpanderPluginInterface[]
+     * @return \Spryker\Client\SearchExtension\Dependency\Plugin\QueryExpanderPluginInterface[]
      */
     protected function createPriceProductAbstractPriceListSearchCountQueryExpanderPlugins(): array
     {
@@ -217,7 +217,7 @@ class PriceProductPriceListPageSearchDependencyProvider extends AbstractDependen
     }
 
     /**
-     * @return \Spryker\Client\Search\Dependency\Plugin\ResultFormatterPluginInterface[]
+     * @return \Spryker\Client\SearchExtension\Dependency\Plugin\ResultFormatterPluginInterface[]
      */
     protected function createPriceProductConcretePriceListSearchResultFormatterPlugins(): array
     {
@@ -225,7 +225,7 @@ class PriceProductPriceListPageSearchDependencyProvider extends AbstractDependen
     }
 
     /**
-     * @return \Spryker\Client\Search\Dependency\Plugin\QueryExpanderPluginInterface[]
+     * @return \Spryker\Client\SearchExtension\Dependency\Plugin\QueryExpanderPluginInterface[]
      */
     protected function createPriceProductConcretePriceListSearchQueryExpanderPlugins(): array
     {
@@ -233,7 +233,7 @@ class PriceProductPriceListPageSearchDependencyProvider extends AbstractDependen
     }
 
     /**
-     * @return \Spryker\Client\Search\Dependency\Plugin\QueryExpanderPluginInterface[]
+     * @return \Spryker\Client\SearchExtension\Dependency\Plugin\QueryExpanderPluginInterface[]
      */
     protected function createPriceProductConcretePriceListSearchCountQueryExpanderPlugins(): array
     {

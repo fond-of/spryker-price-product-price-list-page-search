@@ -3,10 +3,8 @@
 namespace FondOfSpryker\Client\PriceProductPriceListPageSearch;
 
 use Codeception\Test\Unit;
-use FondOfSpryker\Client\PriceProductPriceListPageSearch\Config\PaginationConfigBuilderInterface;
 use FondOfSpryker\Client\PriceProductPriceListPageSearch\Dependency\Client\PriceProductPriceListPageSearchToSearchClientInterface;
-use FondOfSpryker\Client\PriceProductPriceListPageSearch\Plugin\Elasticsearch\Query\PriceProductConcretePriceListSearchQueryPlugin;
-use Generated\Shared\Transfer\SortConfigTransfer;
+use FondOfSpryker\Client\PriceProductPriceListPageSearch\Plugin\SearchExtension\PriceProductConcretePriceListSearchQueryPlugin;
 use Spryker\Client\Kernel\Container;
 use Spryker\Client\Search\Dependency\Plugin\QueryInterface;
 
@@ -43,7 +41,7 @@ class PriceProductPriceListPageSearchFactoryTest extends Unit
     protected $searchStringSetterInterfaceMock;
 
     /**
-     * @var \PHPUnit\Framework\MockObject\MockObject|\FondOfSpryker\Client\PriceProductPriceListPageSearch\Plugin\Elasticsearch\Query\PriceProductConcretePriceListSearchQueryPlugin
+     * @var \PHPUnit\Framework\MockObject\MockObject|\FondOfSpryker\Client\PriceProductPriceListPageSearch\Plugin\SearchExtension\PriceProductConcretePriceListSearchQueryPlugin
      */
     protected $priceProductConcretePriceListSearchQueryPluginMock;
 
@@ -56,11 +54,6 @@ class PriceProductPriceListPageSearchFactoryTest extends Unit
      * @var \PHPUnit\Framework\MockObject\MockObject|\FondOfSpryker\Client\PriceProductPriceListPageSearch\PriceProductPriceListPageSearchConfig
      */
     protected $priceProductPriceListPageSearchConfigMock;
-
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject|\Generated\Shared\Transfer\SortConfigTransfer
-     */
-    private $sortConfigTransferMock;
 
     /**
      * @return void
@@ -85,11 +78,8 @@ class PriceProductPriceListPageSearchFactoryTest extends Unit
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->sortConfigTransferMock = $this->getMockBuilder(SortConfigTransfer::class)
-            ->disableOriginalConstructor()
-            ->getMock();
 
-        $this->search = "search";
+        $this->search = 'search';
 
         $this->requestParameters = [
 
@@ -290,13 +280,5 @@ class PriceProductPriceListPageSearchFactoryTest extends Unit
             ->willReturn([]);
 
         $this->assertIsArray($this->priceProductPriceListPageSearchFactory->getPriceProductConcretePriceListSearchResultFormatters());
-    }
-
-    /**
-     * @return void
-     */
-    public function testCreatePaginationConfigBuilder(): void
-    {
-        $this->assertInstanceOf(PaginationConfigBuilderInterface::class, $this->priceProductPriceListPageSearchFactory->createPaginationConfigBuilder());
     }
 }

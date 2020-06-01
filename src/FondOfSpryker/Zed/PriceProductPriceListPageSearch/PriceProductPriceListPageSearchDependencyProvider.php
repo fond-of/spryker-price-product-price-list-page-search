@@ -2,8 +2,10 @@
 
 namespace FondOfSpryker\Zed\PriceProductPriceListPageSearch;
 
+use FondOfSpryker\Zed\PriceProductPriceListPageSearch\Communication\Plugin\PriceProductPriceListPageSearchExtension\TypePriceProductAbstractPriceListPageSearchDataExpanderPlugin;
+use FondOfSpryker\Zed\PriceProductPriceListPageSearch\Communication\Plugin\PriceProductPriceListPageSearchExtension\TypePriceProductConcretePriceListPageSearchDataExpanderPlugin;
 use FondOfSpryker\Zed\PriceProductPriceListPageSearch\Dependency\Facade\PriceProductPriceListPageSearchToEventBehaviorFacadeBridge;
-use FondOfSpryker\Zed\PriceProductPriceListPageSearch\Dependency\Facade\PriceProductPriceListPageSearchToSearchFacadeBridge;
+use FondOfSpryker\Zed\PriceProductPriceListPageSearch\Dependency\Facade\PriceProductPriceListPageSearchToStoreFacadeBridge;
 use FondOfSpryker\Zed\PriceProductPriceListPageSearch\Dependency\Service\PriceProductPriceListPageSearchToUtilEncodingServiceBridge;
 use Orm\Zed\PriceProductPriceList\Persistence\FosPriceProductPriceListQuery;
 use Spryker\Zed\Kernel\AbstractBundleDependencyProvider;
@@ -14,12 +16,13 @@ class PriceProductPriceListPageSearchDependencyProvider extends AbstractBundleDe
     public const PROPEL_QUERY_PRICE_PRODUCT_PRICE_LIST = 'PROPEL_QUERY_PRICE_PRODUCT_PRICE_LIST';
 
     public const FACADE_EVENT_BEHAVIOR = 'FACADE_EVENT_BEHAVIOR';
-    public const FACADE_SEARCH = 'FACADE_SEARCH';
+    public const FACADE_STORE = 'FACADE_STORE';
 
     public const SERVICE_UTIL_ENCODING = 'SERVICE_UTIL_ENCODING';
 
-    public const PLUGINS_PRICE_PRODUCT_ABSTRACT_PRICE_LIST_PAGE_MAP_EXPANDER = 'PLUGINS_PRICE_PRODUCT_ABSTRACT_PRICE_LIST_PAGE_MAP_EXPANDER';
-    public const PLUGINS_PRICE_PRODUCT_CONCRETE_PRICE_LIST_PAGE_MAP_EXPANDER = 'PLUGINS_PRICE_PRODUCT_CONCRETE_PRICE_LIST_PAGE_MAP_EXPANDER';
+    public const PLUGINS_PRICE_PRODUCT_ABSTRACT_PRICE_LIST_PAGE_SEARCH_DATA_EXPANDER = 'PLUGINS_PRICE_PRODUCT_ABSTRACT_PRICE_LIST_PAGE_SEARCH_DATA_EXPANDER';
+    public const PLUGINS_PRICE_PRODUCT_CONCRETE_PRICE_LIST_PAGE_SEARCH_DATA_EXPANDER = 'PLUGINS_PRICE_PRODUCT_CONCRETE_PRICE_LIST_PAGE_SEARCH_DATA_EXPANDER';
+
     public const PLUGINS_PRICE_PRODUCT_ABSTRACT_PRICE_LIST_PAGE_DATA_EXPANDER = 'PLUGINS_PRICE_PRODUCT_ABSTRACT_PRICE_LIST_PAGE_DATA_EXPANDER';
     public const PLUGINS_PRICE_PRODUCT_CONCRETE_PRICE_LIST_PAGE_DATA_EXPANDER = 'PLUGINS_PRICE_PRODUCT_CONCRETE_PRICE_LIST_PAGE_DATA_EXPANDER';
 
@@ -33,7 +36,13 @@ class PriceProductPriceListPageSearchDependencyProvider extends AbstractBundleDe
         $container = parent::provideBusinessLayerDependencies($container);
 
         $container = $this->addUtilEncodingService($container);
-        $container = $this->addSearchFacade($container);
+        $container = $this->addStoreFacade($container);
+
+        $container = $this->addPriceProductAbstractPriceListPageSearchDataExpanderPlugins($container);
+        $container = $this->addPriceProductConcretePriceListPageSearchDataExpanderPlugins($container);
+
+        $container = $this->addPriceProductAbstractPriceListPageDataExpanderPlugins($container);
+        $container = $this->addPriceProductConcretePriceListPageDataExpanderPlugins($container);
 
         return $container;
     }
@@ -48,8 +57,6 @@ class PriceProductPriceListPageSearchDependencyProvider extends AbstractBundleDe
         $container = parent::provideCommunicationLayerDependencies($container);
 
         $container = $this->addEventBehaviorFacade($container);
-        $container = $this->addPriceProductAbstractPriceListPageMapExpanderPlugins($container);
-        $container = $this->addPriceProductConcretePriceListPageMapExpanderPlugins($container);
 
         return $container;
     }
@@ -75,7 +82,7 @@ class PriceProductPriceListPageSearchDependencyProvider extends AbstractBundleDe
      */
     protected function addEventBehaviorFacade(Container $container): Container
     {
-        $container[static::FACADE_EVENT_BEHAVIOR] = function (Container $container) {
+        $container[static::FACADE_EVENT_BEHAVIOR] = static function (Container $container) {
             return new PriceProductPriceListPageSearchToEventBehaviorFacadeBridge(
                 $container->getLocator()->eventBehavior()->facade()
             );
@@ -91,7 +98,7 @@ class PriceProductPriceListPageSearchDependencyProvider extends AbstractBundleDe
      */
     protected function addPropelPriceProductPriceListQuery(Container $container): Container
     {
-        $container[static::PROPEL_QUERY_PRICE_PRODUCT_PRICE_LIST] = function () {
+        $container[static::PROPEL_QUERY_PRICE_PRODUCT_PRICE_LIST] = static function () {
             return FosPriceProductPriceListQuery::create();
         };
 
@@ -103,11 +110,11 @@ class PriceProductPriceListPageSearchDependencyProvider extends AbstractBundleDe
      *
      * @return \Spryker\Zed\Kernel\Container
      */
-    protected function addSearchFacade(Container $container): Container
+    protected function addStoreFacade(Container $container): Container
     {
-        $container[static::FACADE_SEARCH] = function (Container $container) {
-            return new PriceProductPriceListPageSearchToSearchFacadeBridge(
-                $container->getLocator()->search()->facade()
+        $container[static::FACADE_STORE] = static function (Container $container) {
+            return new PriceProductPriceListPageSearchToStoreFacadeBridge(
+                $container->getLocator()->store()->facade()
             );
         };
 
@@ -121,7 +128,7 @@ class PriceProductPriceListPageSearchDependencyProvider extends AbstractBundleDe
      */
     protected function addUtilEncodingService(Container $container): Container
     {
-        $container[static::SERVICE_UTIL_ENCODING] = function (Container $container) {
+        $container[static::SERVICE_UTIL_ENCODING] = static function (Container $container) {
             return new PriceProductPriceListPageSearchToUtilEncodingServiceBridge(
                 $container->getLocator()->utilEncoding()->service()
             );
@@ -135,21 +142,25 @@ class PriceProductPriceListPageSearchDependencyProvider extends AbstractBundleDe
      *
      * @return \Spryker\Zed\Kernel\Container
      */
-    protected function addPriceProductAbstractPriceListPageMapExpanderPlugins(Container $container): Container
+    protected function addPriceProductAbstractPriceListPageSearchDataExpanderPlugins(Container $container): Container
     {
-        $container[static::PLUGINS_PRICE_PRODUCT_ABSTRACT_PRICE_LIST_PAGE_MAP_EXPANDER] = function (Container $container) {
-            return $this->getPriceProductAbstractPriceListPageMapExpanderPlugins();
+        $self = $this;
+
+        $container[static::PLUGINS_PRICE_PRODUCT_ABSTRACT_PRICE_LIST_PAGE_SEARCH_DATA_EXPANDER] = static function () use ($self) {
+            return $self->getPriceProductAbstractPriceListPageSearchDataExpanderPlugins();
         };
 
         return $container;
     }
 
     /**
-     * @return \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Dependency\Plugin\PriceProductAbstractPriceListPageMapExpanderPluginInterface[]
+     * @return \FondOfSpryker\Zed\PriceProductPriceListPageSearchExtension\Dependency\Plugin\PriceProductAbstractPriceListPageSearchDataExpanderPluginInterface[]
      */
-    protected function getPriceProductAbstractPriceListPageMapExpanderPlugins(): array
+    protected function getPriceProductAbstractPriceListPageSearchDataExpanderPlugins(): array
     {
-        return [];
+        return [
+            new TypePriceProductAbstractPriceListPageSearchDataExpanderPlugin(),
+        ];
     }
 
     /**
@@ -157,21 +168,25 @@ class PriceProductPriceListPageSearchDependencyProvider extends AbstractBundleDe
      *
      * @return \Spryker\Zed\Kernel\Container
      */
-    protected function addPriceProductConcretePriceListPageMapExpanderPlugins(Container $container): Container
+    protected function addPriceProductConcretePriceListPageSearchDataExpanderPlugins(Container $container): Container
     {
-        $container[static::PLUGINS_PRICE_PRODUCT_CONCRETE_PRICE_LIST_PAGE_MAP_EXPANDER] = function (Container $container) {
-            return $this->getPriceProductConcretePriceListPageMapExpanderPlugins();
+        $self = $this;
+
+        $container[static::PLUGINS_PRICE_PRODUCT_CONCRETE_PRICE_LIST_PAGE_SEARCH_DATA_EXPANDER] = static function () use ($self) {
+            return $self->getPriceProductConcretePriceListPageSearchDataExpanderPlugins();
         };
 
         return $container;
     }
 
     /**
-     * @return \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Dependency\Plugin\PriceProductConcretePriceListPageMapExpanderPluginInterface[]
+     * @return \FondOfSpryker\Zed\PriceProductPriceListPageSearchExtension\Dependency\Plugin\PriceProductConcretePriceListPageSearchDataExpanderPluginInterface[]
      */
-    protected function getPriceProductConcretePriceListPageMapExpanderPlugins(): array
+    protected function getPriceProductConcretePriceListPageSearchDataExpanderPlugins(): array
     {
-        return [];
+        return [
+            new TypePriceProductConcretePriceListPageSearchDataExpanderPlugin(),
+        ];
     }
 
     /**
@@ -181,15 +196,17 @@ class PriceProductPriceListPageSearchDependencyProvider extends AbstractBundleDe
      */
     protected function addPriceProductAbstractPriceListPageDataExpanderPlugins(Container $container): Container
     {
-        $container[static::PLUGINS_PRICE_PRODUCT_ABSTRACT_PRICE_LIST_PAGE_MAP_EXPANDER] = function (Container $container) {
-            return $this->getPriceProductAbstractPriceListPageDataExpanderPlugins();
+        $self = $this;
+
+        $container[static::PLUGINS_PRICE_PRODUCT_ABSTRACT_PRICE_LIST_PAGE_DATA_EXPANDER] = static function () use ($self) {
+            return $self->getPriceProductAbstractPriceListPageDataExpanderPlugins();
         };
 
         return $container;
     }
 
     /**
-     * @return \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Dependency\Plugin\PriceProductAbstractPriceListPageDataExpanderPluginInterface[]
+     * @return \FondOfSpryker\Zed\PriceProductPriceListPageSearchExtension\Dependency\Plugin\PriceProductAbstractPriceListPageDataExpanderPluginInterface[]
      */
     protected function getPriceProductAbstractPriceListPageDataExpanderPlugins(): array
     {
@@ -203,15 +220,17 @@ class PriceProductPriceListPageSearchDependencyProvider extends AbstractBundleDe
      */
     protected function addPriceProductConcretePriceListPageDataExpanderPlugins(Container $container): Container
     {
-        $container[static::PLUGINS_PRICE_PRODUCT_ABSTRACT_PRICE_LIST_PAGE_MAP_EXPANDER] = function (Container $container) {
-            return $this->getPriceProductConcretePriceListPageDataExpanderPlugins();
+        $self = $this;
+
+        $container[static::PLUGINS_PRICE_PRODUCT_CONCRETE_PRICE_LIST_PAGE_DATA_EXPANDER] = static function () use ($self) {
+            return $self->getPriceProductConcretePriceListPageDataExpanderPlugins();
         };
 
         return $container;
     }
 
     /**
-     * @return \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Dependency\Plugin\PriceProductConcretePriceListPageDataExpanderPluginInterface[]
+     * @return \FondOfSpryker\Zed\PriceProductPriceListPageSearchExtension\Dependency\Plugin\PriceProductConcretePriceListPageDataExpanderPluginInterface[]
      */
     protected function getPriceProductConcretePriceListPageDataExpanderPlugins(): array
     {

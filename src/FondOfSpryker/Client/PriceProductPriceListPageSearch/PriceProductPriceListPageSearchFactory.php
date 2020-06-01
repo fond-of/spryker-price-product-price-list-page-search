@@ -2,14 +2,10 @@
 
 namespace FondOfSpryker\Client\PriceProductPriceListPageSearch;
 
-use FondOfSpryker\Client\PriceProductPriceListPageSearch\Config\PaginationConfigBuilderInterface;
-use FondOfSpryker\Client\PriceProductPriceListPageSearch\Config\PriceProductPriceListSearchPaginationConfigBuilder;
-use FondOfSpryker\Client\PriceProductPriceListPageSearch\Config\PriceProductPriceListSearchSortConfigBuilder;
-use FondOfSpryker\Client\PriceProductPriceListPageSearch\Config\SortConfigBuilderInterface;
 use FondOfSpryker\Client\PriceProductPriceListPageSearch\Dependency\Client\PriceProductPriceListPageSearchToSearchClientInterface;
 use Spryker\Client\Kernel\AbstractFactory;
-use Spryker\Client\Search\Dependency\Plugin\QueryInterface;
-use Spryker\Client\Search\Dependency\Plugin\SearchStringSetterInterface;
+use Spryker\Client\SearchExtension\Dependency\Plugin\QueryInterface;
+use Spryker\Client\SearchExtension\Dependency\Plugin\SearchStringSetterInterface;
 
 /**
  * @method \FondOfSpryker\Client\PriceProductPriceListPageSearch\PriceProductPriceListPageSearchConfig getConfig()
@@ -17,7 +13,6 @@ use Spryker\Client\Search\Dependency\Plugin\SearchStringSetterInterface;
 class PriceProductPriceListPageSearchFactory extends AbstractFactory
 {
     /**
-     *
      * @return \FondOfSpryker\Client\PriceProductPriceListPageSearch\Dependency\Client\PriceProductPriceListPageSearchToSearchClientInterface
      */
     public function getSearchClient(): PriceProductPriceListPageSearchToSearchClientInterface
@@ -28,9 +23,9 @@ class PriceProductPriceListPageSearchFactory extends AbstractFactory
     /**
      * @param string $searchString
      * @param array $requestParameters
-     * @param \Spryker\Client\Search\Dependency\Plugin\QueryExpanderPluginInterface[] $queryExpanderPlugins
+     * @param \Spryker\Client\SearchExtension\Dependency\Plugin\QueryExpanderPluginInterface[] $queryExpanderPlugins
      *
-     * @return \Spryker\Client\Search\Dependency\Plugin\QueryInterface
+     * @return \Spryker\Client\SearchExtension\Dependency\Plugin\QueryInterface
      */
     public function createPriceProductAbstractPriceListSearchQuery(
         string $searchString,
@@ -51,9 +46,9 @@ class PriceProductPriceListPageSearchFactory extends AbstractFactory
     /**
      * @param string $searchString
      * @param array $requestParameters
-     * @param \Spryker\Client\Search\Dependency\Plugin\QueryExpanderPluginInterface[] $queryExpanderPlugins
+     * @param \Spryker\Client\SearchExtension\Dependency\Plugin\QueryExpanderPluginInterface[] $queryExpanderPlugins
      *
-     * @return \Spryker\Client\Search\Dependency\Plugin\QueryInterface
+     * @return \Spryker\Client\SearchExtension\Dependency\Plugin\QueryInterface
      */
     public function createPriceProductConcretePriceListSearchQuery(
         string $searchString,
@@ -72,7 +67,7 @@ class PriceProductPriceListPageSearchFactory extends AbstractFactory
     }
 
     /**
-     * @return \Spryker\Client\Search\Dependency\Plugin\QueryExpanderPluginInterface[]
+     * @return \Spryker\Client\SearchExtension\Dependency\Plugin\QueryExpanderPluginInterface[]
      */
     public function getPriceProductAbstractPriceListSearchQueryExpanderPlugins(): array
     {
@@ -80,7 +75,7 @@ class PriceProductPriceListPageSearchFactory extends AbstractFactory
     }
 
     /**
-     * @return \Spryker\Client\Search\Dependency\Plugin\QueryExpanderPluginInterface[]
+     * @return \Spryker\Client\SearchExtension\Dependency\Plugin\QueryExpanderPluginInterface[]
      */
     public function getPriceProductAbstractPriceListSearchCountQueryExpanderPlugins(): array
     {
@@ -88,7 +83,7 @@ class PriceProductPriceListPageSearchFactory extends AbstractFactory
     }
 
     /**
-     * @return \Spryker\Client\Search\Dependency\Plugin\ResultFormatterPluginInterface[]
+     * @return \Spryker\Client\SearchExtension\Dependency\Plugin\ResultFormatterPluginInterface[]
      */
     public function getPriceProductAbstractPriceListSearchResultFormatters(): array
     {
@@ -98,7 +93,7 @@ class PriceProductPriceListPageSearchFactory extends AbstractFactory
     }
 
     /**
-     * @return \Spryker\Client\Search\Dependency\Plugin\QueryInterface
+     * @return \Spryker\Client\SearchExtension\Dependency\Plugin\QueryInterface
      */
     public function getPriceProductAbstractPriceListSearchQueryPlugin(): QueryInterface
     {
@@ -106,7 +101,7 @@ class PriceProductPriceListPageSearchFactory extends AbstractFactory
     }
 
     /**
-     * @return \Spryker\Client\Search\Dependency\Plugin\QueryExpanderPluginInterface[]
+     * @return \Spryker\Client\SearchExtension\Dependency\Plugin\QueryExpanderPluginInterface[]
      */
     public function getPriceProductConcretePriceListSearchQueryExpanderPlugins(): array
     {
@@ -114,7 +109,7 @@ class PriceProductPriceListPageSearchFactory extends AbstractFactory
     }
 
     /**
-     * @return \Spryker\Client\Search\Dependency\Plugin\QueryExpanderPluginInterface[]
+     * @return \Spryker\Client\SearchExtension\Dependency\Plugin\QueryExpanderPluginInterface[]
      */
     public function getPriceProductConcretePriceListSearchCountQueryExpanderPlugins(): array
     {
@@ -122,7 +117,7 @@ class PriceProductPriceListPageSearchFactory extends AbstractFactory
     }
 
     /**
-     * @return \Spryker\Client\Search\Dependency\Plugin\ResultFormatterPluginInterface[]
+     * @return \Spryker\Client\SearchExtension\Dependency\Plugin\ResultFormatterPluginInterface[]
      */
     public function getPriceProductConcretePriceListSearchResultFormatters(): array
     {
@@ -132,35 +127,10 @@ class PriceProductPriceListPageSearchFactory extends AbstractFactory
     }
 
     /**
-     * @return \Spryker\Client\Search\Dependency\Plugin\QueryInterface
+     * @return \Spryker\Client\SearchExtension\Dependency\Plugin\QueryInterface
      */
     public function getPriceProductConcretePriceListSearchQueryPlugin(): QueryInterface
     {
         return $this->getProvidedDependency(PriceProductPriceListPageSearchDependencyProvider::PLUGIN_PRICE_PRODUCT_CONCRETE_PRICE_LIST_SEARCH_QUERY);
-    }
-
-    /**
-     * @return \FondOfSpryker\Client\PriceProductPriceListPageSearch\Config\SortConfigBuilderInterface
-     */
-    public function createSortConfigBuilder(): SortConfigBuilderInterface
-    {
-        $sortConfigBuilder = new PriceProductPriceListSearchSortConfigBuilder();
-        $sortConfigBuilder->addSort($this->getConfig()->getAscendingNameSortConfigTransfer());
-        $sortConfigBuilder->addSort($this->getConfig()->getDescendingNameSortConfigTransfer());
-
-        return $sortConfigBuilder;
-    }
-
-    /**
-     * @return \FondOfSpryker\Client\PriceProductPriceListPageSearch\Config\PaginationConfigBuilderInterface
-     */
-    public function createPaginationConfigBuilder(): PaginationConfigBuilderInterface
-    {
-        $paginationConfigBuilder = new PriceProductPriceListSearchPaginationConfigBuilder();
-        $paginationConfigBuilder->setPaginationConfigTransfer(
-            $this->getConfig()->getPriceProductPriceListSearchPaginationConfigTransfer()
-        );
-
-        return $paginationConfigBuilder;
     }
 }

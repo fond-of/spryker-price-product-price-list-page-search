@@ -49,7 +49,7 @@ class PriceProductConcretePriceListPageSynchronizationDataPlugin extends Abstrac
      */
     public function getParams(): array
     {
-        return ['type' => 'page'];
+        return ['type' => 'price-product-concrete-price-list'];
     }
 
     /**

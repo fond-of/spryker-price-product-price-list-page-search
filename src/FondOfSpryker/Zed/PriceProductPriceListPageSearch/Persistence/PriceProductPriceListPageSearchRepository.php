@@ -254,7 +254,7 @@ class PriceProductPriceListPageSearchRepository extends AbstractRepository imple
             ->innerJoinProduct()
             ->filterByFkProduct_In($productIds);
 
-        $priceProductPriceLists = $this->withPriceProductData($priceProductPriceListQuery)
+        $priceProductPriceLists = $this->withPriceProductConcreteData($priceProductPriceListQuery)
             ->setFormatter(new PropelArraySetFormatter())
             ->find();
 
