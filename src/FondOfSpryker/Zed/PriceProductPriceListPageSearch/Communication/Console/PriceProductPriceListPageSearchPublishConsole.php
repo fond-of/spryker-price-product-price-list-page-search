@@ -38,5 +38,7 @@ class PriceProductPriceListPageSearchPublishConsole extends Console
         $this->info('Publish');
         $this->getFacade()->publishAbstractPriceProductByByProductAbstractIds([6443]);
         $this->getFacade()->publishConcretePriceProductByProductIds([4063]);
+
+        return null;
     }
 }
