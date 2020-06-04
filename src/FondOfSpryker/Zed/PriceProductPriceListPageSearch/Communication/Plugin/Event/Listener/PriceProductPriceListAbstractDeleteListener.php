@@ -9,13 +9,14 @@ use Spryker\Zed\Kernel\Communication\AbstractPlugin;
  * @method \FondOfSpryker\Zed\PriceProductPriceListPageSearch\PriceProductPriceListPageSearchConfig getConfig()
  * @method \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Business\PriceProductPriceListPageSearchFacadeInterface getFacade()
  * @method \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Communication\PriceProductPriceListPageSearchCommunicationFactory getFactory()
+ * @method \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Persistence\PriceProductPriceListPageSearchQueryContainerInterface getQueryContainer()
  */
 class PriceProductPriceListAbstractDeleteListener extends AbstractPlugin implements EventBulkHandlerInterface
 {
     protected const COL_FK_PRODUCT_ABSTRACT = 'fos_price_product_price_list.fk_product_abstract';
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *

@@ -12,14 +12,13 @@ use Spryker\Zed\Kernel\Business\AbstractFacade;
 class PriceProductPriceListPageSearchFacade extends AbstractFacade implements PriceProductPriceListPageSearchFacadeInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
+     *
+     * @api
      *
      * @param int[] $priceProductPriceListIds
      *
      * @return void
-     *
-     * @api
-     *
      */
     public function publishAbstractPriceProductPriceList(array $priceProductPriceListIds): void
     {
@@ -28,13 +27,13 @@ class PriceProductPriceListPageSearchFacade extends AbstractFacade implements Pr
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
+     *
+     * @api
      *
      * @param int[] $productAbstractIds
      *
      * @return void
-     *
-     * @api
      */
     public function publishAbstractPriceProductByByProductAbstractIds(array $productAbstractIds): void
     {

@@ -10,13 +10,14 @@ use Spryker\Client\Kernel\AbstractClient;
 class PriceProductPriceListPageSearchClient extends AbstractClient implements PriceProductPriceListPageSearchClientInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
+     *
+     * @api
      *
      * @param string $searchString
      * @param array $requestParameters
      *
      * @return array
-     * @api
      */
     public function searchAbstract(string $searchString, array $requestParameters): array
     {
@@ -36,14 +37,14 @@ class PriceProductPriceListPageSearchClient extends AbstractClient implements Pr
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
+     *
+     * @api
      *
      * @param string $searchString
      * @param array $requestParameters
      *
      * @return int
-     * @api
-     *
      */
     public function searchAbstractCount(string $searchString, array $requestParameters): int
     {
@@ -60,13 +61,14 @@ class PriceProductPriceListPageSearchClient extends AbstractClient implements Pr
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
+     *
+     * @api
      *
      * @param string $searchString
      * @param array $requestParameters
      *
      * @return array
-     * @api
      */
     public function searchConcrete(string $searchString, array $requestParameters): array
     {
@@ -86,14 +88,14 @@ class PriceProductPriceListPageSearchClient extends AbstractClient implements Pr
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
+     *
+     * @api
      *
      * @param string $searchString
      * @param array $requestParameters
      *
      * @return int
-     * @api
-     *
      */
     public function searchConcreteCount(string $searchString, array $requestParameters): int
     {

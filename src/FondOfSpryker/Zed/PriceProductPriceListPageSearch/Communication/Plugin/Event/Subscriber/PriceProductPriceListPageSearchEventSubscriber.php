@@ -52,6 +52,7 @@ class PriceProductPriceListPageSearchEventSubscriber extends AbstractPlugin impl
             PriceProductPriceListEvents::ENTITY_FOS_PRICE_PRODUCT_PRICE_LIST_CREATE,
             new PriceProductPriceListConcreteListener()
         );
+
         return $this;
     }
 
@@ -66,6 +67,7 @@ class PriceProductPriceListPageSearchEventSubscriber extends AbstractPlugin impl
             PriceProductPriceListEvents::ENTITY_FOS_PRICE_PRODUCT_PRICE_LIST_UPDATE,
             new PriceProductPriceListConcreteListener()
         );
+
         return $this;
     }
 
@@ -80,6 +82,7 @@ class PriceProductPriceListPageSearchEventSubscriber extends AbstractPlugin impl
             PriceProductPriceListEvents::ENTITY_FOS_PRICE_PRODUCT_PRICE_LIST_DELETE,
             new PriceProductPriceListConcreteDeleteListener()
         );
+
         return $this;
     }
 
@@ -94,6 +97,7 @@ class PriceProductPriceListPageSearchEventSubscriber extends AbstractPlugin impl
             PriceProductPriceListEvents::ENTITY_FOS_PRICE_PRODUCT_PRICE_LIST_CREATE,
             new PriceProductPriceListAbstractListener()
         );
+
         return $this;
     }
 

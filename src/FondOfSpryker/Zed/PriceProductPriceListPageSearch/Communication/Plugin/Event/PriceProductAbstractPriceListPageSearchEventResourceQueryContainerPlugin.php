@@ -18,7 +18,7 @@ use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 class PriceProductAbstractPriceListPageSearchEventResourceQueryContainerPlugin extends AbstractPlugin implements EventResourceQueryContainerPluginInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -30,7 +30,7 @@ class PriceProductAbstractPriceListPageSearchEventResourceQueryContainerPlugin e
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -42,7 +42,7 @@ class PriceProductAbstractPriceListPageSearchEventResourceQueryContainerPlugin e
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -54,7 +54,7 @@ class PriceProductAbstractPriceListPageSearchEventResourceQueryContainerPlugin e
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *

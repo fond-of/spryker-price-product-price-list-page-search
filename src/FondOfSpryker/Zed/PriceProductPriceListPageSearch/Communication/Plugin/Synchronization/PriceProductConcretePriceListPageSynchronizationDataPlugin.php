@@ -13,11 +13,12 @@ use Spryker\Zed\SynchronizationExtension\Dependency\Plugin\SynchronizationDataBu
  * @method \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Business\PriceProductPriceListPageSearchFacadeInterface getFacade()
  * @method \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Communication\PriceProductPriceListPageSearchCommunicationFactory getFactory()
  * @method \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Persistence\PriceProductPriceListPageSearchRepositoryInterface getRepository()
+ * @method \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Persistence\PriceProductPriceListPageSearchQueryContainerInterface getQueryContainer()
  */
 class PriceProductConcretePriceListPageSynchronizationDataPlugin extends AbstractPlugin implements SynchronizationDataBulkRepositoryPluginInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -29,7 +30,7 @@ class PriceProductConcretePriceListPageSynchronizationDataPlugin extends Abstrac
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -41,7 +42,7 @@ class PriceProductConcretePriceListPageSynchronizationDataPlugin extends Abstrac
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -53,7 +54,7 @@ class PriceProductConcretePriceListPageSynchronizationDataPlugin extends Abstrac
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -65,7 +66,7 @@ class PriceProductConcretePriceListPageSynchronizationDataPlugin extends Abstrac
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -77,7 +78,7 @@ class PriceProductConcretePriceListPageSynchronizationDataPlugin extends Abstrac
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -107,7 +108,7 @@ class PriceProductConcretePriceListPageSynchronizationDataPlugin extends Abstrac
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @param int $offset
      * @param int $limit
