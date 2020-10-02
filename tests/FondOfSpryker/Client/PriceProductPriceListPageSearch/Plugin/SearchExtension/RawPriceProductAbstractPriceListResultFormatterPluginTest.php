@@ -5,6 +5,7 @@ namespace FondOfSpryker\Client\PriceProductPriceListPageSearch\Plugin\SearchExte
 use Codeception\Test\Unit;
 use Elastica\Result;
 use Elastica\ResultSet;
+use Generated\Shared\Search\PriceProductPriceListIndexMap;
 use ReflectionClass;
 use ReflectionMethod;
 
@@ -79,6 +80,10 @@ class RawPriceProductAbstractPriceListResultFormatterPluginTest extends Unit
         $this->resultSetMock->expects($this->atLeastOnce())
             ->method('getResults')
             ->willReturn($this->results);
+
+        $this->resultMock->expects($this->atLeastOnce())
+            ->method('getSource')
+            ->willReturn([PriceProductPriceListIndexMap::SEARCH_RESULT_DATA => []]);
 
         $this->assertIsArray($reflectionMethod->invokeArgs($this->rawPriceProductAbstractPriceListResultFormatterPlugin, [$this->resultSetMock, $this->requestParameters]));
     }
