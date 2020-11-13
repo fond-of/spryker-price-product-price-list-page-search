@@ -48,6 +48,54 @@ class PriceProductPriceListPageSearchRepository extends AbstractRepository imple
     }
 
     /**
+     * @param int $idPriceList
+     *
+     * @return \Generated\Shared\Transfer\PriceProductPriceListPageSearchTransfer[]
+     */
+    public function findPriceProductAbstractPriceListByIdPriceList(int $idPriceList): array
+    {
+        $fosPriceProductPriceListQuery = $this->queryPriceProductPriceList()
+            ->innerJoinProductAbstract()
+            ->filterByFkPriceList($idPriceList)
+            ->filterByFkProductAbstract(null, Criteria::ISNOTNULL)
+            ->filterByFkProduct(null, Criteria::ISNULL);
+
+        $priceProductPriceLists = $this->withPriceProductAbstractData($fosPriceProductPriceListQuery)
+            ->setFormatter(new PropelArraySetFormatter())
+            ->find();
+
+        return $this->getFactory()
+            ->createPriceProductPriceListPageSearchMapper()
+            ->mapDataArrayToTransferArray(
+                $priceProductPriceLists
+            );
+    }
+
+    /**
+     * @param int $idPriceList
+     *
+     * @return \Generated\Shared\Transfer\PriceProductPriceListPageSearchTransfer[]
+     */
+    public function findPriceProductConcretePriceListByIdPriceList(int $idPriceList): array
+    {
+        $fosPriceProductPriceListQuery = $this->queryPriceProductPriceList()
+            ->innerJoinProductAbstract()
+            ->filterByFkPriceList($idPriceList)
+            ->filterByFkProductAbstract(null, Criteria::ISNOTNULL)
+            ->filterByFkProduct(null, Criteria::ISNULL);
+
+        $priceProductPriceLists = $this->withPriceProductAbstractData($fosPriceProductPriceListQuery)
+            ->setFormatter(new PropelArraySetFormatter())
+            ->find();
+
+        return $this->getFactory()
+            ->createPriceProductPriceListPageSearchMapper()
+            ->mapDataArrayToTransferArray(
+                $priceProductPriceLists
+            );
+    }
+
+    /**
      * @module Store
      * @module Currency
      * @module PriceProduct

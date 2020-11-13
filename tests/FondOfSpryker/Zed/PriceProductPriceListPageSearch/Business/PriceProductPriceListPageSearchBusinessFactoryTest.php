@@ -3,8 +3,8 @@
 namespace FondOfSpryker\Zed\PriceProductPriceListPageSearch\Business;
 
 use Codeception\Test\Unit;
-use FondOfSpryker\Zed\PriceProductPriceListPageSearch\Business\Model\PriceProductAbstractSearchWriterInterface;
-use FondOfSpryker\Zed\PriceProductPriceListPageSearch\Business\Model\PriceProductConcreteSearchWriterInterface;
+use FondOfSpryker\Zed\PriceProductPriceListPageSearch\Business\Model\PriceProductAbstractSearchWriter;
+use FondOfSpryker\Zed\PriceProductPriceListPageSearch\Business\Model\PriceProductConcreteSearchWriter;
 use FondOfSpryker\Zed\PriceProductPriceListPageSearch\Dependency\Facade\PriceProductPriceListPageSearchToSearchFacadeInterface;
 use FondOfSpryker\Zed\PriceProductPriceListPageSearch\Dependency\Service\PriceProductPriceListPageSearchToUtilEncodingServiceInterface;
 use FondOfSpryker\Zed\PriceProductPriceListPageSearch\Persistence\PriceProductPriceListPageSearchEntityManager;
@@ -82,27 +82,34 @@ class PriceProductPriceListPageSearchBusinessFactoryTest extends Unit
      */
     public function testCreatePriceProductAbstractSearchWrite(): void
     {
-        $this->containerMock->expects($this->atLeastOnce())
+        $this->containerMock->expects(self::atLeastOnce())
             ->method('has')
             ->withConsecutive(
                 [PriceProductPriceListPageSearchDependencyProvider::FACADE_SEARCH],
-                [PriceProductPriceListPageSearchDependencyProvider::SERVICE_UTIL_ENCODING]
+                [PriceProductPriceListPageSearchDependencyProvider::SERVICE_UTIL_ENCODING],
+                [PriceProductPriceListPageSearchDependencyProvider::PLUGINS_PRICE_PRODUCT_ABSTRACT_PRICE_LIST_PAGE_DATA_EXPANDER]
             )->willReturnOnConsecutiveCalls(
+                true,
                 true,
                 true
             );
 
-        $this->containerMock->expects($this->atLeastOnce())
+        $this->containerMock->expects(self::atLeastOnce())
             ->method('get')
             ->withConsecutive(
                 [PriceProductPriceListPageSearchDependencyProvider::FACADE_SEARCH],
-                [PriceProductPriceListPageSearchDependencyProvider::SERVICE_UTIL_ENCODING]
+                [PriceProductPriceListPageSearchDependencyProvider::SERVICE_UTIL_ENCODING],
+                [PriceProductPriceListPageSearchDependencyProvider::PLUGINS_PRICE_PRODUCT_ABSTRACT_PRICE_LIST_PAGE_DATA_EXPANDER]
             )->willReturnOnConsecutiveCalls(
                 $this->priceProductPriceListPageSearchToSearchFacadeInterfaceMock,
-                $this->priceProductPriceListPageSearchToUtilEncodingServiceInterfaceMock
+                $this->priceProductPriceListPageSearchToUtilEncodingServiceInterfaceMock,
+                []
             );
 
-        $this->assertInstanceOf(PriceProductAbstractSearchWriterInterface::class, $this->priceProductPriceListPageSearchBusinessFactory->createPriceProductAbstractSearchWriter());
+        self::assertInstanceOf(
+            PriceProductAbstractSearchWriter::class,
+            $this->priceProductPriceListPageSearchBusinessFactory->createPriceProductAbstractSearchWriter()
+        );
     }
 
     /**
@@ -110,26 +117,33 @@ class PriceProductPriceListPageSearchBusinessFactoryTest extends Unit
      */
     public function testCreatePriceProductConcreteSearchWriter(): void
     {
-        $this->containerMock->expects($this->atLeastOnce())
+        $this->containerMock->expects(self::atLeastOnce())
             ->method('has')
             ->withConsecutive(
                 [PriceProductPriceListPageSearchDependencyProvider::FACADE_SEARCH],
-                [PriceProductPriceListPageSearchDependencyProvider::SERVICE_UTIL_ENCODING]
+                [PriceProductPriceListPageSearchDependencyProvider::SERVICE_UTIL_ENCODING],
+                [PriceProductPriceListPageSearchDependencyProvider::PLUGINS_PRICE_PRODUCT_CONCRETE_PRICE_LIST_PAGE_DATA_EXPANDER]
             )->willReturnOnConsecutiveCalls(
+                true,
                 true,
                 true
             );
 
-        $this->containerMock->expects($this->atLeastOnce())
+        $this->containerMock->expects(self::atLeastOnce())
             ->method('get')
             ->withConsecutive(
                 [PriceProductPriceListPageSearchDependencyProvider::FACADE_SEARCH],
-                [PriceProductPriceListPageSearchDependencyProvider::SERVICE_UTIL_ENCODING]
+                [PriceProductPriceListPageSearchDependencyProvider::SERVICE_UTIL_ENCODING],
+                [PriceProductPriceListPageSearchDependencyProvider::PLUGINS_PRICE_PRODUCT_CONCRETE_PRICE_LIST_PAGE_DATA_EXPANDER]
             )->willReturnOnConsecutiveCalls(
                 $this->priceProductPriceListPageSearchToSearchFacadeInterfaceMock,
-                $this->priceProductPriceListPageSearchToUtilEncodingServiceInterfaceMock
+                $this->priceProductPriceListPageSearchToUtilEncodingServiceInterfaceMock,
+                []
             );
 
-        $this->assertInstanceOf(PriceProductConcreteSearchWriterInterface::class, $this->priceProductPriceListPageSearchBusinessFactory->createPriceProductConcreteSearchWriter());
+        self::assertInstanceOf(
+            PriceProductConcreteSearchWriter::class,
+            $this->priceProductPriceListPageSearchBusinessFactory->createPriceProductConcreteSearchWriter()
+        );
     }
 }

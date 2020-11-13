@@ -12,14 +12,13 @@ use Spryker\Zed\Kernel\Business\AbstractFacade;
 class PriceProductPriceListPageSearchFacade extends AbstractFacade implements PriceProductPriceListPageSearchFacadeInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
+     *
+     * @api
      *
      * @param int[] $priceProductPriceListIds
      *
      * @return void
-     *
-     * @api
-     *
      */
     public function publishAbstractPriceProductPriceList(array $priceProductPriceListIds): void
     {
@@ -28,13 +27,13 @@ class PriceProductPriceListPageSearchFacade extends AbstractFacade implements Pr
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
+     *
+     * @api
      *
      * @param int[] $productAbstractIds
      *
      * @return void
-     *
-     * @api
      */
     public function publishAbstractPriceProductByByProductAbstractIds(array $productAbstractIds): void
     {
@@ -43,10 +42,7 @@ class PriceProductPriceListPageSearchFacade extends AbstractFacade implements Pr
     }
 
     /**
-     * Specification:
-     *  - Publish merchant relationship prices for product concretes.
-     *  - Uses the given concrete product IDs.
-     *  - Refreshes the prices data for product concretes for all business units and merchant relationships.
+     * {@inheritDoc}
      *
      * @api
      *
@@ -61,10 +57,7 @@ class PriceProductPriceListPageSearchFacade extends AbstractFacade implements Pr
     }
 
     /**
-     * Specification:
-     *  - Publish price list prices for products.
-     *  - Uses the given IDs of the `fos_price_product_price_list` table.
-     *  - Merges created or updated prices to the existing ones.
+     * {@inheritDoc}
      *
      * @api
      *
@@ -76,5 +69,35 @@ class PriceProductPriceListPageSearchFacade extends AbstractFacade implements Pr
     {
         $this->getFactory()->createPriceProductConcreteSearchWriter()
             ->publishConcretePriceProductPriceList($priceProductPriceListIds);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     *
+     * @param int $idPriceList
+     *
+     * @return void
+     */
+    public function publishAbstractPriceProductPriceListByIdPriceList(int $idPriceList): void
+    {
+        $this->getFactory()->createPriceProductAbstractSearchWriter()
+            ->publishAbstractPriceProductPriceListByIdPriceList($idPriceList);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     *
+     * @param int $idPriceList
+     *
+     * @return void
+     */
+    public function publishConcretePriceProductPriceListByIdPriceList(int $idPriceList): void
+    {
+        $this->getFactory()->createPriceProductConcreteSearchWriter()
+            ->publishConcretePriceProductPriceListByIdPriceList($idPriceList);
     }
 }

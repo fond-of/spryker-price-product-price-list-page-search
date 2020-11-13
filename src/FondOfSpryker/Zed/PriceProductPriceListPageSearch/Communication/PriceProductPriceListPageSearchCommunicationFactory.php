@@ -37,20 +37,4 @@ class PriceProductPriceListPageSearchCommunicationFactory extends AbstractCommun
     {
         return $this->getProvidedDependency(PriceProductPriceListPageSearchDependencyProvider::PLUGINS_PRICE_PRODUCT_CONCRETE_PRICE_LIST_PAGE_MAP_EXPANDER);
     }
-
-    /**
-     * @return \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Dependency\Plugin\PriceProductAbstractPriceListPageMapExpanderPluginInterface[]
-     */
-    public function getPriceProductAbstractPriceListPageDataExpanderPlugins(): array
-    {
-        return $this->getProvidedDependency(PriceProductPriceListPageSearchDependencyProvider::PLUGINS_PRICE_PRODUCT_ABSTRACT_PRICE_LIST_PAGE_MAP_EXPANDER);
-    }
-
-    /**
-     * @return \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Dependency\Plugin\PriceProductConcretePriceListPageDataExpanderPluginInterface[]
-     */
-    public function getPriceProductConcretePriceListPageDataExpanderPlugins(): array
-    {
-        return $this->getProvidedDependency(PriceProductPriceListPageSearchDependencyProvider::PLUGINS_PRICE_PRODUCT_CONCRETE_PRICE_LIST_PAGE_MAP_EXPANDER);
-    }
 }

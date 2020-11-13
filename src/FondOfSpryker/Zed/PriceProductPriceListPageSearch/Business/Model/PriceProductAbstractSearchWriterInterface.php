@@ -17,4 +17,11 @@ interface PriceProductAbstractSearchWriterInterface
      * @return void
      */
     public function publishAbstractPriceProductByByProductAbstractIds(array $productAbstractIds): void;
+
+    /**
+     * @param int $idPriceList
+     *
+     * @return void
+     */
+    public function publishAbstractPriceProductPriceListByIdPriceList(int $idPriceList): void;
 }

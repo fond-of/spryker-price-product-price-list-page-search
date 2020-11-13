@@ -127,4 +127,13 @@ abstract class AbstractPriceProductSearchWriter
 
         return [];
     }
+
+    /**
+     * @param \Generated\Shared\Transfer\PriceProductPriceListPageSearchTransfer $priceProductPriceListPageSearchTransfer
+     *
+     * @return \Generated\Shared\Transfer\PriceProductPriceListPageSearchTransfer
+     */
+    abstract protected function expandPriceProductPriceListPageSearchTransfer(
+        PriceProductPriceListPageSearchTransfer $priceProductPriceListPageSearchTransfer
+    ): PriceProductPriceListPageSearchTransfer;
 }

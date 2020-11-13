@@ -12,13 +12,11 @@ interface PriceProductAbstractPriceListPageDataExpanderPluginInterface
      *
      * @api
      *
-     * @param array $data
      * @param \Generated\Shared\Transfer\PriceProductPriceListPageSearchTransfer $priceProductPriceListPageSearchTransfer
      *
-     * @return void
+     * @return PriceProductPriceListPageSearchTransfer
      */
     public function expand(
-        array $data,
         PriceProductPriceListPageSearchTransfer $priceProductPriceListPageSearchTransfer
-    ): void;
+    ): PriceProductPriceListPageSearchTransfer;
 }

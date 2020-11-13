@@ -81,31 +81,6 @@ abstract class AbstractPriceProductPriceListPageMapPlugin extends AbstractPlugin
     }
 
     /**
-     * @param \Generated\Shared\Transfer\PageMapTransfer $pageMapTransfer
-     * @param \Spryker\Zed\Search\Business\Model\Elasticsearch\DataMapper\PageMapBuilderInterface $pageMapBuilder
-     * @param array $data
-     * @param \Generated\Shared\Transfer\LocaleTransfer $locale
-     *
-     * @return \Generated\Shared\Transfer\PageMapTransfer
-     */
-    protected function expandPageMap(
-        PageMapTransfer $pageMapTransfer,
-        PageMapBuilderInterface $pageMapBuilder,
-        array $data,
-        LocaleTransfer $locale
-    ): PageMapTransfer {
-        $priceProductAbstractPriceListPageMapExpanderPlugins = $this->getFactory()
-            ->getPriceProductConcretePriceListPageMapExpanderPlugins();
-
-        foreach ($priceProductAbstractPriceListPageMapExpanderPlugins as $priceProductAbstractPriceListPageMapExpanderPlugin) {
-            $pageMapTransfer = $priceProductAbstractPriceListPageMapExpanderPlugin
-                ->expand($pageMapTransfer, $pageMapBuilder, $data, $locale);
-        }
-
-        return $pageMapTransfer;
-    }
-
-    /**
      * @return string
      */
     abstract public function getName(): string;
@@ -119,4 +94,19 @@ abstract class AbstractPriceProductPriceListPageMapPlugin extends AbstractPlugin
      * @return string
      */
     abstract protected function getTypeProductPriceList(): string;
+
+    /**
+     * @param \Generated\Shared\Transfer\PageMapTransfer $pageMapTransfer
+     * @param \Spryker\Zed\Search\Business\Model\Elasticsearch\DataMapper\PageMapBuilderInterface $pageMapBuilder
+     * @param array $data
+     * @param \Generated\Shared\Transfer\LocaleTransfer $locale
+     *
+     * @return \Generated\Shared\Transfer\PageMapTransfer
+     */
+    abstract protected function expandPageMap(
+        PageMapTransfer $pageMapTransfer,
+        PageMapBuilderInterface $pageMapBuilder,
+        array $data,
+        LocaleTransfer $locale
+    ): PageMapTransfer;
 }

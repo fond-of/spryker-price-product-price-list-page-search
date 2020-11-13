@@ -34,6 +34,8 @@ class PriceProductPriceListPageSearchDependencyProvider extends AbstractBundleDe
 
         $container = $this->addUtilEncodingService($container);
         $container = $this->addSearchFacade($container);
+        $container = $this->addPriceProductAbstractPriceListPageDataExpanderPlugins($container);
+        $container = $this->addPriceProductConcretePriceListPageDataExpanderPlugins($container);
 
         return $container;
     }
@@ -181,7 +183,7 @@ class PriceProductPriceListPageSearchDependencyProvider extends AbstractBundleDe
      */
     protected function addPriceProductAbstractPriceListPageDataExpanderPlugins(Container $container): Container
     {
-        $container[static::PLUGINS_PRICE_PRODUCT_ABSTRACT_PRICE_LIST_PAGE_MAP_EXPANDER] = function (Container $container) {
+        $container[static::PLUGINS_PRICE_PRODUCT_ABSTRACT_PRICE_LIST_PAGE_DATA_EXPANDER] = function () {
             return $this->getPriceProductAbstractPriceListPageDataExpanderPlugins();
         };
 
@@ -203,7 +205,7 @@ class PriceProductPriceListPageSearchDependencyProvider extends AbstractBundleDe
      */
     protected function addPriceProductConcretePriceListPageDataExpanderPlugins(Container $container): Container
     {
-        $container[static::PLUGINS_PRICE_PRODUCT_ABSTRACT_PRICE_LIST_PAGE_MAP_EXPANDER] = function (Container $container) {
+        $container[static::PLUGINS_PRICE_PRODUCT_ABSTRACT_PRICE_LIST_PAGE_DATA_EXPANDER] = function () {
             return $this->getPriceProductConcretePriceListPageDataExpanderPlugins();
         };
 

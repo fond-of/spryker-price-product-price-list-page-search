@@ -19,6 +19,7 @@ use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
  * @method \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Persistence\PriceProductPriceListPageSearchEntityManagerInterface getEntityManager()
  * @method \FondOfSpryker\Zed\PriceProductPriceListPageSearch\PriceProductPriceListPageSearchConfig getConfig()
  * @method \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Persistence\PriceProductPriceListPageSearchRepositoryInterface getRepository()
+ * @method \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Persistence\PriceProductPriceListPageSearchQueryContainerInterface getQueryContainer()
  */
 class PriceProductPriceListPageSearchBusinessFactory extends AbstractBusinessFactory
 {
@@ -32,7 +33,8 @@ class PriceProductPriceListPageSearchBusinessFactory extends AbstractBusinessFac
             $this->createPriceProductSearchMapper(),
             $this->getUtilEncodingService(),
             $this->getRepository(),
-            $this->getEntityManager()
+            $this->getEntityManager(),
+            $this->getPriceProductAbstractPriceListPageDataExpanderPlugins()
         );
     }
 
@@ -78,7 +80,24 @@ class PriceProductPriceListPageSearchBusinessFactory extends AbstractBusinessFac
             $this->createPriceProductSearchMapper(),
             $this->getUtilEncodingService(),
             $this->getRepository(),
-            $this->getEntityManager()
+            $this->getEntityManager(),
+            $this->getPriceProductConcretePriceListPageDataExpanderPlugins()
         );
+    }
+
+    /**
+     * @return \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Dependency\Plugin\PriceProductAbstractPriceListPageDataExpanderPluginInterface[]
+     */
+    public function getPriceProductAbstractPriceListPageDataExpanderPlugins(): array
+    {
+        return $this->getProvidedDependency(PriceProductPriceListPageSearchDependencyProvider::PLUGINS_PRICE_PRODUCT_ABSTRACT_PRICE_LIST_PAGE_DATA_EXPANDER);
+    }
+
+    /**
+     * @return \FondOfSpryker\Zed\PriceProductPriceListPageSearch\Dependency\Plugin\PriceProductConcretePriceListPageDataExpanderPluginInterface[]
+     */
+    public function getPriceProductConcretePriceListPageDataExpanderPlugins(): array
+    {
+        return $this->getProvidedDependency(PriceProductPriceListPageSearchDependencyProvider::PLUGINS_PRICE_PRODUCT_CONCRETE_PRICE_LIST_PAGE_DATA_EXPANDER);
     }
 }

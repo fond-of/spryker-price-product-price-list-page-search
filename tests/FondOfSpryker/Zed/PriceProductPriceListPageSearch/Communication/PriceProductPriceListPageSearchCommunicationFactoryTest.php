@@ -5,6 +5,7 @@ namespace FondOfSpryker\Zed\PriceProductPriceListPageSearch\Communication\Plugin
 use Codeception\Test\Unit;
 use FondOfSpryker\Zed\PriceProductPriceListPageSearch\Communication\PriceProductPriceListPageSearchCommunicationFactory;
 use FondOfSpryker\Zed\PriceProductPriceListPageSearch\Dependency\Facade\PriceProductPriceListPageSearchToEventBehaviorFacadeInterface;
+use FondOfSpryker\Zed\PriceProductPriceListPageSearch\PriceProductPriceListPageSearchDependencyProvider;
 use Spryker\Zed\Kernel\Container;
 
 class PriceProductPriceListPageSearchCommunicationFactoryTest extends Unit
@@ -48,15 +49,20 @@ class PriceProductPriceListPageSearchCommunicationFactoryTest extends Unit
      */
     public function testGetEventBehaviorFacade(): void
     {
-        $this->containerMock->expects($this->atLeastOnce())
+        $this->containerMock->expects(self::atLeastOnce())
             ->method('has')
+            ->with(PriceProductPriceListPageSearchDependencyProvider::FACADE_EVENT_BEHAVIOR)
             ->willReturn(true);
 
-        $this->containerMock->expects($this->atLeastOnce())
+        $this->containerMock->expects(self::atLeastOnce())
             ->method('get')
+            ->with(PriceProductPriceListPageSearchDependencyProvider::FACADE_EVENT_BEHAVIOR)
             ->willReturn($this->priceProductPriceListPageSearchToEventBehaviorFacadeInterfaceMock);
 
-        $this->assertInstanceOf(PriceProductPriceListPageSearchToEventBehaviorFacadeInterface::class, $this->priceProductPriceListPageSearchCommunicationFactory->getEventBehaviorFacade());
+        self::assertInstanceOf(
+            PriceProductPriceListPageSearchToEventBehaviorFacadeInterface::class,
+            $this->priceProductPriceListPageSearchCommunicationFactory->getEventBehaviorFacade()
+        );
     }
 
     /**
@@ -64,15 +70,19 @@ class PriceProductPriceListPageSearchCommunicationFactoryTest extends Unit
      */
     public function testGetPriceProductAbstractPriceListPageMapExpanderPlugins(): void
     {
-        $this->containerMock->expects($this->atLeastOnce())
+        $this->containerMock->expects(self::atLeastOnce())
             ->method('has')
+            ->with(PriceProductPriceListPageSearchDependencyProvider::PLUGINS_PRICE_PRODUCT_ABSTRACT_PRICE_LIST_PAGE_MAP_EXPANDER)
             ->willReturn(true);
 
-        $this->containerMock->expects($this->atLeastOnce())
+        $this->containerMock->expects(self::atLeastOnce())
             ->method('get')
+            ->with(PriceProductPriceListPageSearchDependencyProvider::PLUGINS_PRICE_PRODUCT_ABSTRACT_PRICE_LIST_PAGE_MAP_EXPANDER)
             ->willReturn([]);
 
-        $this->assertIsArray($this->priceProductPriceListPageSearchCommunicationFactory->getPriceProductAbstractPriceListPageMapExpanderPlugins());
+        self::assertIsArray(
+            $this->priceProductPriceListPageSearchCommunicationFactory->getPriceProductAbstractPriceListPageMapExpanderPlugins()
+        );
     }
 
     /**
@@ -80,46 +90,18 @@ class PriceProductPriceListPageSearchCommunicationFactoryTest extends Unit
      */
     public function testGetPriceProductConcretePriceListPageMapExpanderPlugins(): void
     {
-        $this->containerMock->expects($this->atLeastOnce())
+        $this->containerMock->expects(self::atLeastOnce())
             ->method('has')
+            ->with(PriceProductPriceListPageSearchDependencyProvider::PLUGINS_PRICE_PRODUCT_CONCRETE_PRICE_LIST_PAGE_MAP_EXPANDER)
             ->willReturn(true);
 
-        $this->containerMock->expects($this->atLeastOnce())
+        $this->containerMock->expects(self::atLeastOnce())
             ->method('get')
+            ->with(PriceProductPriceListPageSearchDependencyProvider::PLUGINS_PRICE_PRODUCT_CONCRETE_PRICE_LIST_PAGE_MAP_EXPANDER)
             ->willReturn([]);
 
-        $this->assertIsArray($this->priceProductPriceListPageSearchCommunicationFactory->getPriceProductConcretePriceListPageMapExpanderPlugins());
-    }
-
-    /**
-     * @return void
-     */
-    public function testGetPriceProductAbstractPriceListPageDataExpanderPlugins(): void
-    {
-        $this->containerMock->expects($this->atLeastOnce())
-            ->method('has')
-            ->willReturn(true);
-
-        $this->containerMock->expects($this->atLeastOnce())
-            ->method('get')
-            ->willReturn([]);
-
-        $this->assertIsArray($this->priceProductPriceListPageSearchCommunicationFactory->getPriceProductAbstractPriceListPageDataExpanderPlugins());
-    }
-
-    /**
-     * @return void
-     */
-    public function testGetPriceProductConcretePriceListPageDataExpanderPlugins(): void
-    {
-        $this->containerMock->expects($this->atLeastOnce())
-            ->method('has')
-            ->willReturn(true);
-
-        $this->containerMock->expects($this->atLeastOnce())
-            ->method('get')
-            ->willReturn([]);
-
-        $this->assertIsArray($this->priceProductPriceListPageSearchCommunicationFactory->getPriceProductConcretePriceListPageDataExpanderPlugins());
+        self::assertIsArray(
+            $this->priceProductPriceListPageSearchCommunicationFactory->getPriceProductConcretePriceListPageMapExpanderPlugins()
+        );
     }
 }
