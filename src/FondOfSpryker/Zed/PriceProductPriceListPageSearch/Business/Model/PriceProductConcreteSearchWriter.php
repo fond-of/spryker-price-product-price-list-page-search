@@ -110,6 +110,8 @@ class PriceProductConcreteSearchWriter extends AbstractPriceProductSearchWriter 
                 continue;
             }
 
+            $this->priceProductConcreteSearchExpander->expand($priceProductPriceListPageSearchTransfer);
+
             $this->addDataAttributes($priceProductPriceListPageSearchTransfer);
 
             if (isset($existingPageSearchEntities[$priceProductPriceListPageSearchTransfer->getPriceKey()])) {
