@@ -33,7 +33,7 @@
             <parameter name="locale" required="false"/>
             <parameter name="store" required="false" />
             <parameter name="key_suffix_column" value="price_key"/>
-            <parameter name="queue_group" value="sync.search.price"/>
+            <parameter name="queue_group" value="sync.search.price_product_price_list"/>
             <parameter name="params" value='{"type":"price-product-price-list"}'/>
         </behavior>
 
@@ -68,7 +68,7 @@
             <parameter name="locale" required="false"/>
             <parameter name="store" required="false" />
             <parameter name="key_suffix_column" value="price_key"/>
-            <parameter name="queue_group" value="sync.search.price"/>
+            <parameter name="queue_group" value="sync.search.price_product_price_list"/>
             <parameter name="params" value='{"type":"price-product-price-list"}'/>
         </behavior>
 

@@ -38,7 +38,7 @@ class PriceProductAbstractPriceListPageSearchEventResourceQueryContainerPlugin e
      */
     public function getEventName(): string
     {
-        return PriceProductPriceListEvents::PRICE_ABSTRACT_PUBLISH;
+        return PriceProductPriceListEvents::PRICE_PRODUCT_ABSTRACT_PRICE_LIST_PUBLISH;
     }
 
     /**

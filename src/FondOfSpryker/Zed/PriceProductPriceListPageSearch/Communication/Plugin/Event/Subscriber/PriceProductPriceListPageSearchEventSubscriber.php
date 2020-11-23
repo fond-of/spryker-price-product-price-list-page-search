@@ -139,7 +139,7 @@ class PriceProductPriceListPageSearchEventSubscriber extends AbstractPlugin impl
     protected function addAbstractPriceProductPriceListPublishListener(EventCollectionInterface $eventCollection)
     {
         $eventCollection->addListenerQueued(
-            PriceProductPriceListEvents::PRICE_ABSTRACT_PUBLISH,
+            PriceProductPriceListEvents::PRICE_PRODUCT_ABSTRACT_PRICE_LIST_PUBLISH,
             new PriceProductPriceListAbstractListener()
         );
 
@@ -154,7 +154,7 @@ class PriceProductPriceListPageSearchEventSubscriber extends AbstractPlugin impl
     protected function addConcretePriceProductPriceListPublishListener(EventCollectionInterface $eventCollection)
     {
         $eventCollection->addListenerQueued(
-            PriceProductPriceListEvents::PRICE_CONCRETE_PUBLISH,
+            PriceProductPriceListEvents::PRICE_PRODUCT_CONCRETE_PRICE_LIST_PUBLISH,
             new PriceProductPriceListAbstractListener()
         );
 
