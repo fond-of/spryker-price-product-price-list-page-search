@@ -76,4 +76,34 @@ class PriceProductPriceListPageSearchFacade extends AbstractFacade implements Pr
         $this->getFactory()->createPriceProductConcreteSearchWriter()
             ->publishConcretePriceProductPriceList($priceProductPriceListIds);
     }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     *
+     * @param int $idPriceList
+     *
+     * @return void
+     */
+    public function publishAbstractPriceProductPriceListByIdPriceList(int $idPriceList): void
+    {
+        $this->getFactory()->createPriceProductAbstractSearchWriter()
+            ->publishAbstractPriceProductPriceListByIdPriceList($idPriceList);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     *
+     * @param int $idPriceList
+     *
+     * @return void
+     */
+    public function publishConcretePriceProductPriceListByIdPriceList(int $idPriceList): void
+    {
+        $this->getFactory()->createPriceProductConcreteSearchWriter()
+            ->publishConcretePriceProductPriceListByIdPriceList($idPriceList);
+    }
 }

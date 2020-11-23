@@ -21,6 +21,34 @@ interface PriceProductPriceListPageSearchFacadeInterface
     /**
      * Specification:
      *  - Publish price list prices for product abstracts.
+     *  - Uses the given fkPriceList of the `fos_price_product_price_list` table.
+     *  - Merges created or updated prices to the existing ones.
+     *
+     * @api
+     *
+     * @param int $idPriceList
+     *
+     * @return void
+     */
+    public function publishAbstractPriceProductPriceListByIdPriceList(int $idPriceList): void;
+
+    /**
+     * Specification:
+     *  - Publish price list prices for product abstracts.
+     *  - Uses the given fkPriceList of the `fos_price_product_price_list` table.
+     *  - Merges created or updated prices to the existing ones.
+     *
+     * @api
+     *
+     * @param int $idPriceList
+     *
+     * @return void
+     */
+    public function publishConcretePriceProductPriceListByIdPriceList(int $idPriceList): void;
+
+    /**
+     * Specification:
+     *  - Publish price list prices for product abstracts.
      *  - Uses the given abstract product IDs.
      *  - Merges created or updated prices to the existing ones.
      *

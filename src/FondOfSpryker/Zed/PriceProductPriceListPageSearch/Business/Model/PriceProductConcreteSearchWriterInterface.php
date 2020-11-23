@@ -17,4 +17,11 @@ interface PriceProductConcreteSearchWriterInterface
      * @return void
      */
     public function publishConcretePriceProductByProductIds(array $productIds): void;
+
+    /**
+     * @param int $idPriceList
+     *
+     * @return void
+     */
+    public function publishConcretePriceProductPriceListByIdPriceList(int $idPriceList): void;
 }

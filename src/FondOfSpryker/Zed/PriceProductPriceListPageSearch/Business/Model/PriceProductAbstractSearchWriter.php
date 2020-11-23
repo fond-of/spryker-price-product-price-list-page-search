@@ -135,4 +135,31 @@ class PriceProductAbstractSearchWriter extends AbstractPriceProductSearchWriter 
         // Delete the rest of the entities
         $this->entityManager->deletePriceProductAbstractEntities($existingPageSearchEntities);
     }
+
+    /**
+     * @param int $idPriceList
+     *
+     * @return void
+     */
+    public function publishAbstractPriceProductPriceListByIdPriceList(int $idPriceList): void
+    {
+        $priceProductPriceListPageSearchTransfers = $this->repository
+            ->findPriceProductAbstractPriceListByIdPriceList($idPriceList);
+
+        if (empty($priceProductPriceListPageSearchTransfers)) {
+            return;
+        }
+
+        $priceKeys = array_map(
+            function (PriceProductPriceListPageSearchTransfer $priceProductPriceListPageSearchTransfer) {
+                return $priceProductPriceListPageSearchTransfer->getPriceKey();
+            },
+            $priceProductPriceListPageSearchTransfers
+        );
+
+        $existingPageSearchEntities = $this->repository
+            ->findExistingPriceProductAbstractPriceListEntitiesByPriceKeys($priceKeys);
+
+        $this->write($priceProductPriceListPageSearchTransfers, $existingPageSearchEntities, true);
+    }
 }

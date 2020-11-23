@@ -14,6 +14,20 @@ interface PriceProductPriceListPageSearchRepositoryInterface
     public function findPriceProductPriceListByIds(array $priceProductPriceListIds): array;
 
     /**
+     * @param int $idPriceList
+     *
+     * @return \Generated\Shared\Transfer\PriceProductPriceListPageSearchTransfer[]
+     */
+    public function findPriceProductAbstractPriceListByIdPriceList(int $idPriceList): array;
+
+    /**
+     * @param int $idPriceList
+     *
+     * @return \Generated\Shared\Transfer\PriceProductPriceListPageSearchTransfer[]
+     */
+    public function findPriceProductConcretePriceListByIdPriceList(int $idPriceList): array;
+
+    /**
      * @param string[] $priceKeys
      *
      * @return \Orm\Zed\PriceProductPriceListPageSearch\Persistence\FosPriceProductAbstractPriceListPageSearch[]
