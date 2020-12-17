@@ -82,7 +82,7 @@ interface PriceProductPriceListPageSearchRepositoryInterface
     /**
      * @param string[] $priceKeys
      *
-     * @return \Orm\Zed\PriceProductPriceListPageSearch\Persistence\FosPriceProductAbstractPriceListPageSearch[]
+     * @return \Orm\Zed\PriceProductPriceListPageSearch\Persistence\FosPriceProductConcretePriceListPageSearch[]
      */
     public function findExistingPriceProductConcretePriceListEntitiesByPriceKeys(array $priceKeys): array;
 

@@ -79,12 +79,12 @@ class PriceProductPriceListPageSearchRepository extends AbstractRepository imple
     public function findPriceProductConcretePriceListByIdPriceList(int $idPriceList): array
     {
         $fosPriceProductPriceListQuery = $this->queryPriceProductPriceList()
-            ->innerJoinProductAbstract()
+            ->innerJoinProduct()
             ->filterByFkPriceList($idPriceList)
-            ->filterByFkProductAbstract(null, Criteria::ISNOTNULL)
-            ->filterByFkProduct(null, Criteria::ISNULL);
+            ->filterByFkProductAbstract(null, Criteria::ISNULL)
+            ->filterByFkProduct(null, Criteria::ISNOTNULL);
 
-        $priceProductPriceLists = $this->withPriceProductAbstractData($fosPriceProductPriceListQuery)
+        $priceProductPriceLists = $this->withPriceProductConcreteData($fosPriceProductPriceListQuery)
             ->setFormatter(new PropelArraySetFormatter())
             ->find();
 
@@ -280,7 +280,7 @@ class PriceProductPriceListPageSearchRepository extends AbstractRepository imple
     /**
      * @param string[] $priceKeys
      *
-     * @return \Orm\Zed\PriceProductPriceListPageSearch\Persistence\FosPriceProductAbstractPriceListPageSearch[]
+     * @return \Orm\Zed\PriceProductPriceListPageSearch\Persistence\FosPriceProductConcretePriceListPageSearch[]
      */
     public function findExistingPriceProductConcretePriceListEntitiesByPriceKeys(array $priceKeys): array
     {

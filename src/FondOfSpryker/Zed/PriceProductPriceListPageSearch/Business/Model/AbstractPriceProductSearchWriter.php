@@ -56,22 +56,6 @@ abstract class AbstractPriceProductSearchWriter
     }
 
     /**
-     * @param \Orm\Zed\PriceProductPriceListPageSearch\Persistence\FosPriceProductAbstractPriceListPageSearch[] $priceProductAbstractPriceListPageSearchEntities
-     *
-     * @return array
-     */
-    protected function mapPageSearchEntitiesByPriceKey(array $priceProductAbstractPriceListPageSearchEntities): array
-    {
-        $mappedPriceProductAbstractPriceListPageSearchEntities = [];
-
-        foreach ($priceProductAbstractPriceListPageSearchEntities as $priceProductAbstractPriceListPageSearchEntity) {
-            $mappedPriceProductAbstractPriceListPageSearchEntities[$priceProductAbstractPriceListPageSearchEntity->getPriceKey()] = $priceProductAbstractPriceListPageSearchEntity;
-        }
-
-        return $mappedPriceProductAbstractPriceListPageSearchEntities;
-    }
-
-    /**
      * @param \Generated\Shared\Transfer\PriceProductPriceListPageSearchTransfer $priceProductPriceListPageSearchTransfer
      * @param \Orm\Zed\PriceProductPriceListPageSearch\Persistence\FosPriceProductAbstractPriceListPageSearch[] $existingPageSearchEntities
      * @param bool $mergePrices

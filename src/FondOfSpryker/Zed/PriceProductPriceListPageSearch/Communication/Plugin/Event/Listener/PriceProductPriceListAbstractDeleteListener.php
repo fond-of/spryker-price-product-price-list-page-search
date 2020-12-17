@@ -4,6 +4,7 @@ namespace FondOfSpryker\Zed\PriceProductPriceListPageSearch\Communication\Plugin
 
 use Spryker\Zed\Event\Dependency\Plugin\EventBulkHandlerInterface;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
+use Spryker\Zed\PropelOrm\Business\Transaction\DatabaseTransactionHandlerTrait;
 
 /**
  * @method \FondOfSpryker\Zed\PriceProductPriceListPageSearch\PriceProductPriceListPageSearchConfig getConfig()
@@ -13,6 +14,8 @@ use Spryker\Zed\Kernel\Communication\AbstractPlugin;
  */
 class PriceProductPriceListAbstractDeleteListener extends AbstractPlugin implements EventBulkHandlerInterface
 {
+    use DatabaseTransactionHandlerTrait;
+
     protected const COL_FK_PRODUCT_ABSTRACT = 'fos_price_product_price_list.fk_product_abstract';
 
     /**
@@ -20,13 +23,15 @@ class PriceProductPriceListAbstractDeleteListener extends AbstractPlugin impleme
      *
      * @api
      *
-     * @param \Spryker\Shared\Kernel\Transfer\TransferInterface[] $transfers
+     * @param \Generated\Shared\Transfer\EventEntityTransfer[] $transfers
      * @param string $eventName
      *
      * @return void
      */
     public function handleBulk(array $transfers, $eventName): void
     {
+        $this->preventTransaction();
+
         $productAbstractIds = $this->getFactory()
             ->getEventBehaviorFacade()
             ->getEventTransferForeignKeys(

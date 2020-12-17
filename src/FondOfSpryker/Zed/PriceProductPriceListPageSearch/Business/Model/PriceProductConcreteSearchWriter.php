@@ -137,6 +137,22 @@ class PriceProductConcreteSearchWriter extends AbstractPriceProductSearchWriter 
     }
 
     /**
+     * @param \Orm\Zed\PriceProductPriceListPageSearch\Persistence\FosPriceProductConcretePriceListPageSearch[] $priceProductConcretePriceListPageSearchEntities
+     *
+     * @return array
+     */
+    protected function mapPageSearchEntitiesByPriceKey(array $priceProductConcretePriceListPageSearchEntities): array
+    {
+        $mappedPriceProductConcretePriceListPageSearchEntities = [];
+
+        foreach ($priceProductConcretePriceListPageSearchEntities as $priceProductConcretePriceListPageSearchEntity) {
+            $mappedPriceProductConcretePriceListPageSearchEntities[$priceProductConcretePriceListPageSearchEntity->getPriceKey()] = $priceProductConcretePriceListPageSearchEntity;
+        }
+
+        return $mappedPriceProductConcretePriceListPageSearchEntities;
+    }
+
+    /**
      * @param int $idPriceList
      *
      * @return void
@@ -144,7 +160,7 @@ class PriceProductConcreteSearchWriter extends AbstractPriceProductSearchWriter 
     public function publishConcretePriceProductPriceListByIdPriceList(int $idPriceList): void
     {
         $priceProductPriceListPageSearchTransfers = $this->repository
-            ->findPriceProductAbstractPriceListByIdPriceList($idPriceList);
+            ->findPriceProductConcretePriceListByIdPriceList($idPriceList);
 
         if (empty($priceProductPriceListPageSearchTransfers)) {
             return;
@@ -158,7 +174,7 @@ class PriceProductConcreteSearchWriter extends AbstractPriceProductSearchWriter 
         );
 
         $existingPageSearchEntities = $this->repository
-            ->findExistingPriceProductAbstractPriceListEntitiesByPriceKeys($priceKeys);
+            ->findExistingPriceProductConcretePriceListEntitiesByPriceKeys($priceKeys);
 
         $this->write($priceProductPriceListPageSearchTransfers, $existingPageSearchEntities, true);
     }

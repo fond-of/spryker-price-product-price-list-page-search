@@ -47,7 +47,7 @@ class PriceGrouper implements PriceGrouperInterface
         foreach ($priceProductPriceListPageSearchTransfer->getUngroupedPrices() as $priceTransfer) {
             $currencyCode = $priceTransfer->getCurrencyCode();
 
-            if ($priceTransfer->getGrossPrice() || $priceTransfer->getNetPrice()) {
+            if ($priceTransfer->getGrossPrice() !== null || $priceTransfer->getNetPrice() !== null) {
                 $groupedPrices[$currencyCode][static::PRICE_DATA] = $priceTransfer->getPriceData();
             }
 
@@ -73,7 +73,7 @@ class PriceGrouper implements PriceGrouperInterface
                 return true;
             }
 
-            return !empty($v);
+            return isset($v);
         }, ARRAY_FILTER_USE_BOTH);
 
         foreach ($priceData as $key => &$value) {

@@ -137,6 +137,22 @@ class PriceProductAbstractSearchWriter extends AbstractPriceProductSearchWriter 
     }
 
     /**
+     * @param \Orm\Zed\PriceProductPriceListPageSearch\Persistence\FosPriceProductAbstractPriceListPageSearch[] $priceProductAbstractPriceListPageSearchEntities
+     *
+     * @return array
+     */
+    protected function mapPageSearchEntitiesByPriceKey(array $priceProductAbstractPriceListPageSearchEntities): array
+    {
+        $mappedPriceProductAbstractPriceListPageSearchEntities = [];
+
+        foreach ($priceProductAbstractPriceListPageSearchEntities as $priceProductAbstractPriceListPageSearchEntity) {
+            $mappedPriceProductAbstractPriceListPageSearchEntities[$priceProductAbstractPriceListPageSearchEntity->getPriceKey()] = $priceProductAbstractPriceListPageSearchEntity;
+        }
+
+        return $mappedPriceProductAbstractPriceListPageSearchEntities;
+    }
+
+    /**
      * @param int $idPriceList
      *
      * @return void
