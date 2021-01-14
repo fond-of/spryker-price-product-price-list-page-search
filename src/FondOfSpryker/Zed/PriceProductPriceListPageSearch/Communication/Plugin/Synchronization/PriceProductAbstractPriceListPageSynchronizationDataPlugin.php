@@ -5,6 +5,7 @@ namespace FondOfSpryker\Zed\PriceProductPriceListPageSearch\Communication\Plugin
 use FondOfSpryker\Shared\PriceProductPriceListPageSearch\PriceProductPriceListPageSearchConstants;
 use Generated\Shared\Transfer\FilterTransfer;
 use Generated\Shared\Transfer\SynchronizationDataTransfer;
+use Orm\Zed\PriceProductPriceListPageSearch\Persistence\Map\FosPriceProductAbstractPriceListPageSearchTableMap;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 use Spryker\Zed\SynchronizationExtension\Dependency\Plugin\SynchronizationDataBulkRepositoryPluginInterface;
 
@@ -50,7 +51,7 @@ class PriceProductAbstractPriceListPageSynchronizationDataPlugin extends Abstrac
      */
     public function getParams(): array
     {
-        return ['type' => 'price-product-abstract-price-list'];
+        return ['type' => 'price-product-price-list'];
     }
 
     /**
@@ -119,6 +120,7 @@ class PriceProductAbstractPriceListPageSynchronizationDataPlugin extends Abstrac
     {
         return (new FilterTransfer())
             ->setOffset($offset)
-            ->setLimit($limit);
+            ->setLimit($limit)
+            ->setOrderBy(FosPriceProductAbstractPriceListPageSearchTableMap::COL_ID_PRICE_PRODUCT_ABSTRACT_PRICE_LIST_PAGE_SEARCH);
     }
 }
