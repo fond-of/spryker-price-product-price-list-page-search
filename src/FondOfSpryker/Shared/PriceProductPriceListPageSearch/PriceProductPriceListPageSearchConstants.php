@@ -11,4 +11,5 @@ interface PriceProductPriceListPageSearchConstants
     public const PRICE_PRODUCT_PRICE_LIST_SYNC_SEARCH_ERROR_QUEUE = 'sync.search.price_product_price_list.error';
 
     public const PARAMETER_SKU = 'sku';
+    public const PARAMETER_NAME = 'name';
 }
