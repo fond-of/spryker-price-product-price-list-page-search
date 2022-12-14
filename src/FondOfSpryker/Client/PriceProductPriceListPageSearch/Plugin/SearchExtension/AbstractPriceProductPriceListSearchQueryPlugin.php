@@ -5,7 +5,7 @@ namespace FondOfSpryker\Client\PriceProductPriceListPageSearch\Plugin\SearchExte
 use Elastica\Query;
 use Elastica\Query\AbstractQuery;
 use Elastica\Query\BoolQuery;
-use Elastica\Query\Match;
+use Elastica\Query\MatchQuery;
 use Elastica\Query\MatchAll;
 use Elastica\Query\MultiMatch;
 use Generated\Shared\Search\PriceProductPriceListIndexMap;
@@ -45,7 +45,7 @@ abstract class AbstractPriceProductPriceListSearchQueryPlugin extends AbstractPl
      */
     protected function createSearchQuery(): Query
     {
-        $match = (new Match())
+        $match = (new MatchQuery())
             ->setField(PriceProductPriceListIndexMap::TYPE, $this->getType());
 
         $boolQuery = (new BoolQuery())
