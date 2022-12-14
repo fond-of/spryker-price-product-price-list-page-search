@@ -9,7 +9,7 @@
     }
   ],
   "require": {
-    "php": ">=7.2",
+    "php": ">=8.0",
     "fond-of-spryker/price-product-price-list": "dev-master",
     "fond-of-spryker/price-product-price-list-page-search-extension": "dev-master",
     "spryker/search": "^8.10.0",
